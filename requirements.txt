@@ -13,6 +13,7 @@ cycler==0.12.1
 debugpy==1.8.17
 decorator==5.2.1
 executing==2.2.1
+fastjsonschema==2.21.2
 feature_engine==1.9.3
 fonttools==4.61.0
 gitdb==4.0.12
@@ -33,6 +34,7 @@ MarkupSafe==3.0.3
 matplotlib==3.10.7
 matplotlib-inline==0.2.1
 narwhals==2.13.0
+nbformat==5.10.4
 nest-asyncio==1.6.0
 numpy==2.3.5
 packaging==25.0
