@@ -33,9 +33,18 @@ The dataset used in this project can be downloaded from [Kaggle: Social Media Me
 
 ## Project Plan
 
-- Outline the high-level steps taken for the analysis.
-- How was the data managed throughout the collection, processing, analysis and interpretation steps?
-- Why did you choose the research methodologies you used?
+The prjoject follows the following steps:
+
+1. `Extract` - Extract the data from Kaggle.
+2. `Load` - Load the CSV via Pandas.
+3. `Transform` - Clean and process the data using Pandas, adding new columns and checking for missing or duplicated values.
+4. `Visualise` - Creating charts with Matplotlib, Seaborn and Plotly to visualise trends and distributions.
+5. `Analyse` - Interpret what the visualisations displayed.
+6. `Statistical Tests` - Run statistical tests to accept or reject hypothesises.
+7. `Unupervised Learning` - Use K-Means to cluster the data in to similar groups.
+8. `Supervised Learning` - Use both Linear Regression and Random Forrest machine learning to create predictive models.
+9. `Interactive Dashboard` - Use Streamlit to create an interactive dasboard that allows a user to both interogate the data and run predictions using new unseen data.
+10. `Document` - Record findings and conclusions.
 
 ## The rationale to map the business requirements to the Data Visualisations
 
