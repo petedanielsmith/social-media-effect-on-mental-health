@@ -90,7 +90,20 @@ Todo
 
 ## Main Data Analysis Libraries
 
-- Here you should list the libraries you used in the project and provide an example(s) of how you used these libraries.
+The libraries used for data analysis were:
+
+1. `Pandas` - For data loading, transforming and cleaning.
+2. `NumPy` - For data transforming.
+3. `Matplotlib` - For overall multi chart layouts.
+4. `Seaborn` - For a lot of the individual charts.
+5. `Plotly` - For interactive charts.
+6. `SciPy` - For statistical tets.
+7. `Pingouin` - For statistical tets.
+8. `Scikit-learn` - For machine learning alogrithms.
+9. `Feature-engine` - For feature engineering.
+10. `Imbalanced-learn` - For SMOTE when dealing with imbalanced datasets.
+11. `Joblib` - For saving and loading models.
+12. `Streamlit` - For creating an interactive web dashboard.
 
 ## Credits
 
