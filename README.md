@@ -2,7 +2,26 @@
 
 ## Dataset Content
 
-- Describe your dataset. Choose a dataset of reasonable size to avoid exceeding the repository's maximum size of 100Gb.
+The dataset used in this project can be downloaded from [Kaggle: Social Media Mental Health Indicators Dataset](https://www.kaggle.com/datasets/sonalshinde123/social-media-mental-health-indicators-dataset). It captures the relationship between social media usage, screen-time behaviour, and daily lifestyle factors such as sleep duration and interaction quality.
+
+**Columns include:**
+
+- `person_name` - Name or identifier of the person
+- `age` - Age of the individual in years
+- `date` - Date the results were recorded
+- `gender` - Gender (Male, Female or Other)
+- `platform` - Primary social media platform used (Instagram, Snapchat, Facebook, WhatsApp, TikTok,
+  YouTube, Twitter)
+- `daily_screen_time_min` - Number of minutes spent using a screen in a day
+- `social_media_time_min` - Number of minutes spent on social media in a day
+- `negative_interactions_count` - Number of negative or harmful interactions experienced online
+- `positive_interactions_count` - Number of positive or supportive interactions experienced online
+- `sleep_hours` - Total number of hours the person sleeps per day
+- `physical_activity_min` - Number of minutes spent doing physical activity
+- `anxiety_level` - Anxiety level (1-10)
+- `stress_level` - Stress level (1-10)
+- `mood_level` - Mood level (1-10)
+- `mental_state` - Mental state of the individual (Healthy, Stressed or At Risk)
 
 ## Business Requirements
 
