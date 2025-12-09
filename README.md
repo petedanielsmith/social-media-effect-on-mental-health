@@ -28,36 +28,40 @@
 </p>
 
 <p align="center">
-  <a href="https://scikit-learn.org/stable/" title="Scikit-learn official website">
-    <img alt="Scikit-learn Logo" height="30px" src="./images/sckit-learn.png" />
-  </a>
-  <a href="https://pingouin-stats.org/build/html/index.html" title="Pingouin official wesbite">
-    <img alt="Pingouin Logo" height="30px" src="./images/pingouin.png" />
-  </a>
-   <a href="https://scipy.org/" title="SciPy offical website">
-    <img alt="SciPy Logo" height="30px" src="./images/scipy.png" />
-  </a>
-   <a href="https://docs.streamlit.io/" title="Streamlit offical website">
-    <img alt="Streamlit Logo" height="30px" src="./images/streamlit.png" />
-  </a>
-  <a href="https://feature-engine.trainindata.com/en/latest/" title="Feature-engine offical website">
-    <img alt="Feature-engine Logo" height="30px" src="./images/feature-engine.png" />
-  </a>
-  <a href="https://imbalanced-learn.org/stable/" title="Imbalanced-learn offical website">
-    <img alt="Imbalanced-learn Logo" height="30px" src="./images/imbalanced-learn.png" />
-  </a>
-  <br />
+  <span style="display:inline-block; white-space:nowrap;">
+    <a href="https://scikit-learn.org/stable/" title="Scikit-learn official website">
+      <img alt="Scikit-learn Logo" height="30px" src="./images/sckit-learn.png" />
+    </a>
+    <a href="https://pingouin-stats.org/build/html/index.html" title="Pingouin official wesbite">
+      <img alt="Pingouin Logo" height="30px" src="./images/pingouin.png" />
+    </a>
+    <a href="https://scipy.org/" title="SciPy offical website">
+      <img alt="SciPy Logo" height="30px" src="./images/scipy.png" />
+    </a>
+    <a href="https://docs.streamlit.io/" title="Streamlit offical website">
+      <img alt="Streamlit Logo" height="30px" src="./images/streamlit.png" />
+    </a>
+    <a href="https://feature-engine.trainindata.com/en/latest/" title="Feature-engine offical website">
+      <img alt="Feature-engine Logo" height="30px" src="./images/feature-engine.png" />
+    </a>
+    <a href="https://imbalanced-learn.org/stable/" title="Imbalanced-learn offical website">
+      <img alt="Imbalanced-learn Logo" height="30px" src="./images/imbalanced-learn.png" />
+    </a>
+    <br />
+  </span>
 </p>
 
 <p align="center">
-  <a href="https://github.com/users/petedanielsmith/projects/4">Project Board</a>
-  &nbsp;&nbsp;-&nbsp;&nbsp;
-  <a href="./jupyter_notebooks/01_dataload_clean_and_look_at_distributions.ipynb">Jupyter Notebooks</a>
-  &nbsp;&nbsp;-&nbsp;&nbsp;
-  <a href="https://social-media-effect-on-mental-health.streamlit.app/">Streamlit Dashboard</a>
-   &nbsp;&nbsp;-&nbsp;&nbsp;
-  <a href="#conclusions">Conclusions</a>
-  <br/><br/><br/>
+  <span style="display:inline-block; white-space:nowrap;">
+    <a href="https://github.com/users/petedanielsmith/projects/4">Project Board</a>
+    &nbsp;&nbsp;-&nbsp;&nbsp;
+    <a href="./jupyter_notebooks/01_dataload_clean_and_look_at_distributions.ipynb">Jupyter Notebooks</a>
+    &nbsp;&nbsp;-&nbsp;&nbsp;
+    <a href="https://social-media-effect-on-mental-health.streamlit.app/">Streamlit Dashboard</a>
+    &nbsp;&nbsp;-&nbsp;&nbsp;
+    <a href="#conclusions">Conclusions</a>
+    <br/><br/><br/>
+  </span>
 </p>
 
 ## Dataset Content

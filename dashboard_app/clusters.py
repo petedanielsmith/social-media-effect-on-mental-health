@@ -10,13 +10,13 @@ st.set_page_config(
 
 st.write("# " + ":material/diversity_3:" + " Clusters")
 
-st.caption("Segmentation of users into distinct clusters based on their behaviors and characteristics.")
+st.caption("Segmentation of users into distinct clusters based on their behaviours and characteristics.")
 
 
 tab1, tab2, tab3 = st.tabs([":material/person: Personas",":material/2d: Scatter Plot", " :material/menu_book: Methodology"])
 
 with tab1:
-    st.info('Each of the clusters were assigned to a persona based on their key characteristics', icon=":material/person:")
+    st.info('Each of the clusters were assigned to a persona based on their key characteristics and the centroid values of the clusters.', icon=":material/person:")
 
     # Create three columns for displaying personas
     cols = st.columns(3)
