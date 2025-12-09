@@ -6,44 +6,44 @@
 
 <p align="center">
   <br/>
-  <a href="https://www.python.org/" title="Python official website">
+  <a href="https://www.python.org/" title="Python official website" style="text-decoration: none !important;">
     <img alt="Python Logo" height="30px" src="./images/python-logo.png" />
   </a>
-  <a href="https://pandas.pydata.org/" title="Pandas official wesbite">
+  <a href="https://pandas.pydata.org/" title="Pandas official wesbite" style="text-decoration: none !important;">
     <img alt="Pandas Logo" height="30px" src="./images/pandas-logo.png" />
   </a>
-   <a href="https://matplotlib.org/stable/" title="Matplotlib offical website">
+   <a href="https://matplotlib.org/stable/" title="Matplotlib offical website" style="text-decoration: none !important;">
     <img alt="Matplotlib Logo" height="30px" src="./images/matplotlib-logo.png" />
   </a>
-  <a href="https://seaborn.pydata.org/" title="Seaborn offical website">
+  <a href="https://seaborn.pydata.org/" title="Seaborn offical website" style="text-decoration: none !important;">
     <img alt="Seaborn Logo" height="30px" src="./images/seaborn-logo.png" />
   </a>
-  <a href="https://plotly.com/python/" title="Plotly offical website">
+  <a href="https://plotly.com/python/" title="Plotly offical website" style="text-decoration: none !important;">
     <img alt="Plotly Logo" height="30px" src="./images/plotly-logo.png" />
   </a>
-  <a href="https://www.kaggle.com/" title="Kaggle offical website">
+  <a href="https://www.kaggle.com/" title="Kaggle offical website" style="text-decoration: none !important;">
     <img alt="Kaggle Logo" height="30px" src="./images/kaggle-logo.png" />
   </a>
   <br />
 </p>
 
 <p align="center">
-  <a href="https://scikit-learn.org/stable/" title="Scikit-learn official website">
+  <a href="https://scikit-learn.org/stable/" title="Scikit-learn official website" style="text-decoration: none !important;">
     <img alt="Scikit-learn Logo" height="30px" src="./images/sckit-learn.png" />
-  </a>!--
-  --><a href="https://pingouin-stats.org/build/html/index.html" title="Pingouin official wesbite">
+  </a>
+  <a href="https://pingouin-stats.org/build/html/index.html" title="Pingouin official wesbite" style="text-decoration: none !important;">
     <img alt="Pingouin Logo" height="30px" src="./images/pingouin.png" />
-  </a>!--
-  --><a href="https://scipy.org/" title="SciPy offical website">
+  </a>
+  <a href="https://scipy.org/" title="SciPy offical website" style="text-decoration: none !important;">
     <img alt="SciPy Logo" height="30px" src="./images/scipy.png" />
-  </a>!--
-  --><a href="https://docs.streamlit.io/" title="Streamlit offical website">
+  </a>
+  <a href="https://docs.streamlit.io/" title="Streamlit offical website" style="text-decoration: none !important;">
     <img alt="Streamlit Logo" height="30px" src="./images/streamlit.png" />
-  </a>!--
-  --><a href="https://feature-engine.trainindata.com/en/latest/" title="Feature-engine offical website">
+  </a>
+  <a href="https://feature-engine.trainindata.com/en/latest/" title="Feature-engine offical website" style="text-decoration: none !important;">
     <img alt="Feature-engine Logo" height="30px" src="./images/feature-engine.png" />
-  </a><!--
-  --><a href="https://imbalanced-learn.org/stable/" title="Imbalanced-learn offical website">
+  </a>
+  <a href="https://imbalanced-learn.org/stable/" title="Imbalanced-learn offical website" style="text-decoration: none !important;">
     <img alt="Imbalanced-learn Logo" height="30px" src="./images/imbalanced-learn.png" />
   </a>
   <br />
