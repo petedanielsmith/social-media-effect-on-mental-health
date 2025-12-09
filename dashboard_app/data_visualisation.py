@@ -36,6 +36,7 @@ with tab1:
 with tab2:
     st.info(":material/leaderboard: Distributions of numerical features")
 
+    # Define numerical fields for distribution plots
     dist_fields = [ "age", "daily_screen_time_min", "social_media_time_min", "sleep_hours", "physical_activity_min" ]
 
     # add multi select to pick fields to plot distributions for numerical features
@@ -54,10 +55,12 @@ with tab2:
         else:
             bin_size = None
     
+    # Extra options expander
     with st.expander("Extra Options"):
         col1, col2, col3 = st.columns(3)
 
         with col1:
+            # Add mean line toggle
             on = st.toggle("Add Mean Line", value=False)
             if on:
                 show_mean = True
@@ -65,6 +68,7 @@ with tab2:
                 show_mean = False
 
         with col2:
+            # Add median line toggle
             on = st.toggle("Add Median Line", value=False)
             if on:
                 show_median = True
@@ -72,11 +76,13 @@ with tab2:
                 show_median = False
 
         with col3:
+            # Add standard deviation line dropdown
             std_line = st.selectbox("Add Standard Deviation Line", ["None", "1 SD", "2 SD", "3 SD"])
 
         col1, col2, col3 = st.columns(3)
 
         with col1:
+            # Add standard deviation line dropdown
             on = st.toggle("Add 1st Quartile Line", value=False)
             if on:
                 show_q1 = True
@@ -84,6 +90,7 @@ with tab2:
                 show_q1 = False
 
         with col2:
+            # Add show 3rd quartile line toggle
             on = st.toggle("Add 3rd Quartile Line", value=False)
             if on:
                 show_q3 = True
@@ -91,6 +98,7 @@ with tab2:
                 show_q3 = False
 
         with col3:
+            # Add IQR line toggle
             on = st.toggle("Add IQR Line", value=False)
             if on:
                 show_iqr = True
@@ -100,12 +108,14 @@ with tab2:
         col1, col2, col3 = st.columns(3)
 
         with col1:
+            # Add skewness sub title toggle
             on = st.toggle("Add skewness", value=False)
             if on:
                 show_skewness = True
             else:
                 show_skewness = False
         with col2:
+            # Add kurtosis sub title toggle
             on = st.toggle("Add kurtosis", value=False)
             if on:
                 show_kurtosis = True
@@ -113,12 +123,14 @@ with tab2:
                 show_kurtosis = False
 
         with col3:
+            # Add count toggle
             on = st.toggle("Add count", value=False)
             if on:
                 show_count = True
             else:
                 show_count = False
 
+    # Create subplots based on number of fields selected to change the grid layout dynamically
     match len(fields):
         case 0 | 1:
             fig, ax = plt.subplots(1, 1, figsize=(20, 10))
@@ -130,11 +142,15 @@ with tab2:
             fig, ax = plt.subplots(2, 3, figsize=(20, 10))
 
     if isinstance(ax, np.ndarray):
+        # Flatten the 2D array of axes to 1D for easier indexing
         ax = ax.flatten()
     else:
+        # is only one plot, convert to list so for loop works
         ax = [ax]
 
+    # for each field, plot the distribution
     for i, field in enumerate(fields):
+        # call the plot distribution function from graph_utils to draw that fields distribution
         plot_distribution(
                 axes=ax[i],
                 type=chart_type,
@@ -164,6 +180,7 @@ with tab2:
     plt.tight_layout()
     st.pyplot(fig)
 
+    # Warning for IQR lines with box plots
     if(chart_type in ["Box Plot", "Violin Plot & Box Plot"] and show_iqr == True):
         st.warning("Note: Box whiskers may not line up with the IQR lines as Seaborn automatically adjusts the whiskers to the min and max values when there are no outliers.")
 

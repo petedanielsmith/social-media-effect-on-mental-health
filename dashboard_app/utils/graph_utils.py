@@ -2,18 +2,41 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-
 def plot_distribution(
     axes, type, df, column, bins, kde,
     mean, median, std, q1, q3, iqr,
     skew, kurtosis, count
 ):
+    """
+    Plots the distribution of a numerical column using various plot types
+    and annotates it with optional summary statistics.
 
+    Parameters:
+    - axes : The axes on which to plot
+    - type : The type of plot to create. Options: "Histogram", "Histogram & KDE", "Violin Plot", "Box Plot", "Violin Plot & Box Plot"
+    - df : The DataFrame containing the data
+    - column : The column name of the numerical data to plot
+    - bins : Number of bins for histogram
+    - kde : Whether to include KDE in histogram
+    - mean : Whether to annotate mean
+    - median : Whether to annotate median
+    - std : Standard deviation annotation option: "None", "1 SD", "2 SD", "3 SD"
+    - q1 : Whether to annotate first quartile
+    - q3 : Whether to annotate third quartile
+    - iqr : Whether to annotate interquartile range fences
+    - skew : Whether to include skewness in subtitle
+    - kurtosis : Whether to include kurtosis in subtitle
+    - count : Whether to include count in subtitle
+   
+    Returns:
+    - None
+    """
+
+    # Get series and formatted title
     series = df[column]
     col_title = column.replace("_", " ").title()
-
-    box = None
     
+    # plot based on type
     match type:
         case "Histogram" | "Histogram & KDE":
             # Plot histogram + KDE
@@ -48,23 +71,26 @@ def plot_distribution(
     if count:
         sub_parts.append(f"Count: {series.count()}")
 
+    # Format subtitle to add pipe separators if multiple parts
     sub_text = " | ".join(sub_parts)
 
-    # Title + subtitle
+    # Add Title + subtitle
     if sub_text:
         axes.set_title(f"Histogram of {col_title}\n{sub_text}", fontsize=16, pad=20)
     else:
         axes.set_title(f"Histogram of {col_title}", fontsize=16)
 
+    # Set axis labels
     axes.set_xlabel(col_title)
     axes.set_ylabel("Frequency")
 
-    # ---- Annotation rows INSIDE the plot ----
+    # Set annotations positions so that they don't overlap if multiple are selected
     y_start = 0.95     # start just under the top of plot
     y_step  = -0.05    # move DOWN for each extra label
     y_pos   = y_start
 
     def annotate_line(x, label, color):
+        """Helper function to annotate a vertical line on the plot."""
         nonlocal y_pos
         axes.axvline(x, color=color, linestyle="dashed", linewidth=2)
         axes.text(
@@ -76,39 +102,46 @@ def plot_distribution(
         )
         y_pos += y_step
 
-    # Summary stats
-    mean_val   = series.mean()
+    # Summary stats calculations for annotations
+    mean_val = series.mean()
     median_val = series.median()
-    std_val    = series.std()
-    q1_val     = series.quantile(0.25)
-    q3_val     = series.quantile(0.75)
-    iqr_val    = q3_val - q1_val
+    std_val = series.std()
+    q1_val = series.quantile(0.25)
+    q3_val = series.quantile(0.75)
+    iqr_val = q3_val - q1_val
 
-    # Add annotations
+    # Add annotations based on user selections
     if mean:
+        # Annotate mean
         annotate_line(mean_val, "Mean", "r")
     if median:
+        # Annotate median
         annotate_line(median_val, "Median", "b")
     if q1:
+        # Annotate first quartile
         annotate_line(q1_val, "Q1", "m")
     if q3:
+        # Annotate third quartile
         annotate_line(q3_val, "Q3", "m")
     if iqr:
+        # Annotate IQR ranges
         annotate_line(q1_val - 1.5*iqr_val, "Q1 - 1.5 IQR", "y")
         annotate_line(q3_val + 1.5*iqr_val, "Q3 + 1.5 IQR", "y")
 
+    # Add standard deviation annotations
     if std in ("1 SD", "2 SD", "3 SD"):
         annotate_line(mean_val + std_val, "+1σ", "g")
         annotate_line(mean_val - std_val, "-1σ", "g")
 
+        # Add 2 SD annotations
         if std in ("2 SD", "3 SD"):
             annotate_line(mean_val + 2*std_val, "+2σ", "orange")
             annotate_line(mean_val - 2*std_val, "-2σ", "orange")
 
+        # Add 3 SD annotations
         if std == "3 SD":
             annotate_line(mean_val + 3*std_val, "+3σ", "purple")
             annotate_line(mean_val - 3*std_val, "-3σ", "purple")
 
+    # Adjust layout to prevent clipping
     axes.figure.tight_layout()
-
-
