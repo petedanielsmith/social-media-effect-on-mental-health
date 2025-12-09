@@ -25,7 +25,7 @@ with tab1:
     for i, persona in enumerate(PERSONA_DETAILS):
         with cols[i % 3]:
             st.write(f"##### {persona['name']}")
-            st.image(persona['image_path'], use_container_width=True)
+            st.image(persona['image_path'], width="stretch")
             st.write(f"###### {persona['name_detailed']}")
             # Add custom HTML for the bulletpoints to align the cards in the columns with a fixed height
             st.html(f"""
@@ -49,6 +49,7 @@ with tab1:
 
             # Get raw data for the cluster
             row = cluster_profiles.loc[i].to_frame("Value")
+            row["Value"] = row["Value"].astype(str) 
 
             # Display raw data in the popover
             popover.write(f"### Cluster {i} Raw Data")
@@ -56,7 +57,7 @@ with tab1:
 
 with tab2:
     st.info('Using PCA to reduce the dimensions and visualise clusters as a 2D scatter plot', icon=":material/2d:")
-    st.image("./images/pca_clusters_k7_scatter_plot.png", use_container_width=True)
+    st.image("./images/pca_clusters_k7_scatter_plot.png", width="stretch")
 
 with tab3:
     st.info('Methodology behind the clustering process I used', icon=":material/menu_book:")
