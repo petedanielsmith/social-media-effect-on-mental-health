@@ -198,13 +198,13 @@ with tab3:
                     'negative_interactions_count', 'positive_interactions_count', 'interaction_total', 'interaction_negative_ratio' ]
 
     # add multi select to pick fields to plot frequencies for features
-    fields = st.multiselect("Select features to plot frequencies", options=freq_fields, default=[f for f in freq_fields if f not in ["interaction_negative_ratio", "week_number"]])
+    fields = st.multiselect("Select features to plot frequencies", 
+                            options=freq_fields, 
+                            default=[f for f in freq_fields if f not in ["interaction_negative_ratio", "week_number"]])
     
-    col1, col2 = st.columns(2)
-
-    with col1:
-        # Add a toggle for including percentages
-        include_percentages = st.toggle("Include percentages on bars", value=False)
+    
+    # Add a toggle for including percentages
+    include_percentages = st.toggle("Include percentages on bars", value=False)
 
     # Create subplots based on number of fields selected to change the grid layout dynamically
     match len(fields):
@@ -257,6 +257,92 @@ with tab3:
 
 with tab4:
     st.info(":material/grid_on: Correlation Matrix and Heatmaps")
+
+    # Define numerical fields for correlation
+    numeric_fields = [ 'year', 'month', 'week_number', 'daily_screen_time_min', 'social_media_time_min',
+                    'sleep_hours', 'physical_activity_min', 'negative_interactions_count', 'positive_interactions_count',
+                    'interaction_total', 'interaction_negative_ratio', 'anxiety_level', 'stress_level', 'mood_level' ]
+
+    # add multi select to pick fields to plot correlations
+    fields = st.multiselect("Select numerical features to compute correlations", 
+                           options=numeric_fields, 
+                           default=[f for f in numeric_fields if f not in ['year', 'month', 'week_number']])
+    
+    col1, col2 = st.columns(2)
+
+    with col1:
+        # Add a chart type dropdown
+        type = st.selectbox("Select chart type", ["Heatmap", "Correlation Matrix"])
+
+    with col2:
+        # Add a correlation method dropdown
+        method = st.selectbox("Select correlation method", ["Pearson", "Spearman", "Kendall"])
+
+    if type == "Heatmap":
+        decimal_options = ["No values shown", "0", "1", "2", "3", "4", "5"]
+    else:
+        decimal_options = ["0", "1", "2", "3", "4", "5"]
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        # User selects number of decimals
+        decimals = st.selectbox("Number format, the number of decimal places:", decimal_options, index=2 if type=="Heatmap" else 2)
+ 
+    with col2:
+        colours_list = [
+                            {"name": "Yellow Green Blue", "value": "YlGnBu"},
+                            {"name": "Cool Warm", "value": "coolwarm"},
+                            {"name": "Yellow Orange Brown", "value": "YlOrBr"},
+                            {"name": "Viridis", "value": "viridis"},
+                            {"name": "Magma", "value": "magma"},
+                        ]
+        # User selects colour name
+        colour_name = st.selectbox("Select Colour Map for Heatmap", [c["name"] for c in colours_list])
+
+        # Get colour map value
+        colour_map = next(c["value"] for c in colours_list if c["name"] == colour_name)
+
+
+    # Determine formatting
+    if decimals == "No values shown":
+        show_values = False
+        fmt = None
+    else:
+        show_values = True
+        fmt = f".{decimals}f"
+        table_fmt = f"{{:.{decimals}f}}"
+
+    if len(fields) >= 2:
+        # Calculate the correlation values using the selected method
+        corr = df_filtered[fields].corr(method=method.lower())
+
+        if (type == "Heatmap"):
+            # set figure size
+            plt.figure(figsize=(12, 12))
+
+            # Create a heatmap to visually show the correlation
+            sns.heatmap(
+                corr,
+                cmap=colour_map,
+                square=True,
+                linewidths=1,
+                linecolor="white",
+                annot=show_values,
+                fmt=fmt,
+            )
+            # Add a title
+            plt.title("Correlation Matrix" + f"\n({method} Method)", fontsize=16)
+            plt.tight_layout()
+            st.pyplot(plt)
+        else:
+            # Add a matrix title
+            st.markdown("**Correlation Matrix**" + f" - ({method} Method)")
+            # Display the correlation matrix as a styled dataframe
+            st.dataframe(corr.style.format(table_fmt), use_container_width=True)
+    else:
+        # Display a warning if less than two features are selected
+        st.warning("Please select at least two numerical features to compute correlations.")
 
 with tab5:
     st.info(":material/monitoring: Combined Charts for multi-variable analysis")
