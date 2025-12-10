@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
 import numpy as np
+from datetime import date
 from utils.data_utils import load_data
 from utils.graph_utils import plot_distribution, plot_frequency
 
@@ -31,17 +32,84 @@ def prev_page():
 # Load the cleaned dataset
 df = load_data()
 
-# add filter bar here
-#-----------------------
+# Add sidebar filters
+with st.sidebar:
+    st.header(":material/filter_alt: Filters")
+
+    # Get min and max dates for date filter
+    min_date = df["date"].min().date()
+    max_date = df["date"].max().date()
+
+    # Date range filter
+    min_date = df["date"].min()
+    max_date = df["date"].max()
+
+    # Date range filter
+    date_range = st.date_input(
+        "Select Date Range",
+        value=(min_date, max_date),
+        min_value=min_date,
+        max_value=max_date,
+        format="DD/MM/YYYY",
+        on_change=reset_page
+    )
+
+    # Initialise start_date and end_date
+    start_date = None
+    end_date = None
+
+    if isinstance(date_range, tuple) and len(date_range) == 2:
+        # Set start_date and end_date based on date_range
+        start_date, end_date = date_range
+    elif isinstance(date_range, date):
+        # If date_range is a single date, set start_date and leave end_date as None
+        start_date = date_range
+        end_date = None
+
+    # gender multi select filter
+    gender = st.multiselect("Select Genders", options=["Male", "Female", "Other"],  on_change=reset_page)
+
+    # age group multi select filter
+    age_group = st.multiselect("Select Age Groups", options=['<18', '18-24', '25-34', '35-44', '45-54', '55+'], on_change=reset_page)
+
+    # platform multi select filter
+    platform = st.multiselect("Select Platforms", options=['Facebook', 'Instagram', 'Snapchat', 'TikTok', 'Twitter', 'WhatsApp', 'YouTube'], on_change=reset_page)
+
+    # mental state multi select filter
+    mental_state = st.multiselect("Select Mental States", options=['Healthy', 'Stressed', 'At Risk'], on_change=reset_page)
+    
 
 # Create a copy of the dataframe to apply filters on
 df_filtered = df.copy()
 
-# Apply filters here
-#-----------------------
+# Apply date range filter
+if start_date and end_date:
+    df_filtered = df_filtered[
+        (df_filtered["date"] >= pd.to_datetime(start_date)) &
+        (df_filtered["date"] <= pd.to_datetime(end_date))
+    ]
 
+# Apply gender filter
+if len(gender) > 0:
+    df_filtered = df_filtered[df_filtered["gender"].isin(gender)]
+
+# Apply age group filter
+if len(age_group) > 0:
+    df_filtered = df_filtered[df_filtered["age_group"].isin(age_group)]
+
+# Apply platform filter
+if len(platform) > 0:
+    df_filtered = df_filtered[df_filtered["platform"].isin(platform)]
+
+# Apply mental state filter
+if len(mental_state) > 0:
+    df_filtered = df_filtered[df_filtered["mental_state"].isin(mental_state)]
+
+
+# Main title
 st.write("# " + ":material/bar_chart:" + " Data Visualisation")
 
+# Subtitle
 st.caption("EDA - Exploratory Data Analysis and Visualisation of the social media and mental health dataset.")
 
 
@@ -103,6 +171,9 @@ with tab1:
     start = (page - 1) * page_size
     end = start + page_size
     page_df = sorted_df.iloc[start:end]
+
+    if "date" in page_df.columns:
+        page_df["date"] = page_df["date"].dt.strftime("%d/%m/%Y")
 
     # Display
     st.dataframe(page_df, width="stretch", height=600)
