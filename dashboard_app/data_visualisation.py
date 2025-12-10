@@ -4,12 +4,16 @@ import seaborn as sns
 import pandas as pd
 import numpy as np
 from datetime import date
-from utils.data_utils import load_data
 from utils.graph_utils import plot_distribution, plot_frequency, plot_stacked_category, plot_group_by_bar, plot_trend_over_time
 
 st.set_page_config(
     layout="wide",
 )
+
+@st.cache_data(show_spinner=False)
+def load_data():
+    df = pd.read_parquet("./data/mental_health_social_media_dataset_cleaned.parquet")
+    return df
  
 if "page" not in st.session_state:
     # Initialise the page number in session state to 1
