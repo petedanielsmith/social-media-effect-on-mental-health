@@ -90,7 +90,7 @@ with tab1:
 
     # Pagination setup
     total_rows = len(sorted_df)
-    total_pages = (total_rows - 1) 
+    total_pages = max(1, (total_rows + page_size - 1) // page_size)
     
     # Clamp page to valid range
     if st.session_state.page > total_pages:
