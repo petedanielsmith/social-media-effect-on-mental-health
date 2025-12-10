@@ -69,6 +69,8 @@ with tab3:
     The goal was to uncover meaningful user personas that reflect distinct patterns in screen time, emotional wellbeing, and digital habits.
     """)
 
+    st.markdown("---")
+
     st.write("### Pipeline Structure")
     st.code("""
     pipeline = Pipeline(steps=[
@@ -85,6 +87,9 @@ with tab3:
     - **Standardisation** using StandardScaler  
     - **K-Means clustering**, where the number of clusters *k* was selected through multiple validation methods  
     """)
+
+    st.markdown("---")
+
 
     st.write("### Selecting the Number of Clusters")
 
@@ -112,6 +117,8 @@ with tab3:
 
     """)
 
+    st.markdown("---")
+
     st.write("### PCA Cluster Comparisons")
 
     st.markdown("""
@@ -137,6 +144,8 @@ with tab3:
     This value captures distinct behavioural groups without splitting meaningful patterns.  
     """)
 
+    st.markdown("---")
+
     st.write("### Persona Creation")
     st.markdown("""
     After selecting **k = 7**, I extracted the cluster centroids and analysed the average characteristics of each group.  
@@ -149,6 +158,8 @@ with tab3:
 
     These personas help translate raw cluster statistics into understandable groups.
     """)
+
+    st.markdown("---")
 
     st.write("### Conclusion")
 
