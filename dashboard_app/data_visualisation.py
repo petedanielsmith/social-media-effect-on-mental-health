@@ -105,6 +105,8 @@ if len(platform) > 0:
 if len(mental_state) > 0:
     df_filtered = df_filtered[df_filtered["mental_state"].isin(mental_state)]
 
+# Display the count of filtered records in the sidebar
+st.sidebar.markdown(f"Filtered Records: **{len(df_filtered)}** / {len(df)}")
 
 # Main title
 st.write("# " + ":material/bar_chart:" + " Data Visualisation")
