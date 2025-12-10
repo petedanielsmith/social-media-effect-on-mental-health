@@ -10,7 +10,7 @@ from utils.graph_utils import plot_distribution, plot_frequency, plot_stacked_ca
 st.set_page_config(
     layout="wide",
 )
-
+ 
 if "page" not in st.session_state:
     # Initialise the page number in session state to 1
     st.session_state.page = 1
@@ -180,7 +180,7 @@ with tab1:
 
     start = (page - 1) * page_size
     end = start + page_size
-    page_df = sorted_df.iloc[start:end]
+    page_df = sorted_df.iloc[start:end].copy()
 
     if "date" in page_df.columns:
         page_df["date"] = page_df["date"].dt.strftime("%d/%m/%Y")
@@ -628,7 +628,7 @@ with tab6:
         x=x_axis,
         y=y_axis,
         hue=None if hue == "None" else hue,
-        palette="Set2",
+        palette=None if hue == "None" else "Set2",
         alpha=0.7
     )
 
@@ -720,26 +720,26 @@ with tab8:
         else:        
             rolling_window = None
     
-    # create figure
-    fig = plt.figure(figsize=(12, 8))
-    ax = fig.add_subplot(1, 1, 1)
-
-    # create trend over time plot
-    plot_trend_over_time(
-        ax=ax,
-        df=df_filtered,
-        fields=fields,
-        frequency=frequency,
-        aggregation_method=aggregation_method,
-        force_y_zero=force_y_zero,
-        show_variability=show_variability,
-        show_rolling_average=show_rolling_average,
-        rolling_window=rolling_window
-    )
-
+    
     if len(fields) == 0:
         st.warning("Please select at least one feature to plot.")
     else:
+        # create figure
+        fig = plt.figure(figsize=(12, 8))
+        ax = fig.add_subplot(1, 1, 1)
+
+        # create trend over time plot
+        plot_trend_over_time(
+            ax=ax,
+            df=df_filtered,
+            fields=fields,
+            frequency=frequency,
+            aggregation_method=aggregation_method,
+            force_y_zero=force_y_zero,
+            show_variability=show_variability,
+            show_rolling_average=show_rolling_average,
+            rolling_window=rolling_window
+        )
         # display figure
         st.pyplot(fig)
 

@@ -193,7 +193,7 @@ def plot_stacked_category(axes, df, group_one, group_two, title):
     """
     Plots a 100% stacked bar chart for two categorical variables.
     
-    Parameters:
+    Parameters: 
     - axes: matplotlib Axes object
     - df: DataFrame
     - group_one: main x-axis category
