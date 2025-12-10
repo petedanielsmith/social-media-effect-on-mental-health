@@ -116,7 +116,15 @@ st.caption("EDA - Exploratory Data Analysis and Visualisation of the social medi
 
 
 # Create tabs for different visualisations
-tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([":material/table: Table", ":material/leaderboard: Distributions", ":material/bar_chart: Frequency Charts", ":material/grid_on: Correlations", ":material/monitoring: Combined Charts", ":material/monitoring: Trends Over Time"])
+tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 = st.tabs(
+            [":material/table: Table", 
+             ":material/leaderboard: Distributions", 
+             ":material/bar_chart: Frequency Charts", 
+             ":material/grid_on: Correlations", 
+             ":material/search_insights: Category vs Numeric", 
+             ":material/looks_one: Numeric vs Numeric", 
+             ":material/category: Category vs Category", 
+             ":material/monitoring: Trends Over Time"])
 
 with tab1:
     st.info(":material/table: Table View")
@@ -520,7 +528,66 @@ with tab4:
         st.warning("Please select at least two numerical features to compute correlations.")
 
 with tab5:
-    st.info(":material/monitoring: Combined Charts for multi-variable analysis")
+    st.info(":material/search_insights: Category vs Numeric")
+
+    st.caption("Comparing category vs numeric visualisations.")
 
 with tab6:
+    st.info( ":material/looks_one: Numeric vs Numeric")
+
+    st.caption("Comparing numeric vs numeric visualisations as a scatter plot.")
+
+    # define numeric fields that can be selected
+    numeric_fields = [ "age", "social_media_time_min", "daily_screen_time_min", "sleep_hours", "physical_activity_min"]
+
+    # define category fields that can be selected
+    category_fields = [ 'age_group', 'platform', 'gender', 'mental_state', 'anxiety_level', 'stress_level', 'mood_level' ]
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        # add dropdown to select x axis
+        x_axis = st.selectbox("Select X-Axis", options=numeric_fields, index=0)
+    
+    with col2:
+        # add dropdown to select y axis
+        y_axis = st.selectbox("Select Y-Axis", options=numeric_fields, index=1)
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        # add dropdown to select hue
+        hue = st.selectbox("Select Category to Colour (Optional)", options=["None"] + category_fields, index=0)
+
+    # create figure
+    fig = plt.figure(figsize=(12, 8))
+
+    # create scatter plot
+    sns.scatterplot(
+        data=df_filtered,
+        x=x_axis,
+        y=y_axis,
+        hue=None if hue == "None" else hue,
+        palette="Set2",
+        alpha=0.7
+    )
+
+    # Add a title
+    plt.title(f"{x_axis.replace('_', ' ').title()} vs {y_axis.replace('_', ' ').title()}", fontsize=16)
+    plt.tight_layout()
+
+    # set axis labels
+    plt.xlabel(x_axis.replace('_', ' ').title())
+    plt.ylabel(y_axis.replace('_', ' ').title())
+
+    # display figure
+    st.pyplot(fig)
+
+with tab7:
+    st.info(":material/category: Category vs Category")
+
+    st.caption("Comparing category vs category visualisations.")
+
+with tab8:
     st.info(":material/monitoring: Trends Over Time")
+
