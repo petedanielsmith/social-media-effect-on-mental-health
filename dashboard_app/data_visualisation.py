@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 from datetime import date
 from utils.data_utils import load_data
-from utils.graph_utils import plot_distribution, plot_frequency, plot_stacked_category
+from utils.graph_utils import plot_distribution, plot_frequency, plot_stacked_category, plot_group_by_bar, plot_trend_over_time
 
 st.set_page_config(
     layout="wide",
@@ -530,6 +530,68 @@ with tab4:
 with tab5:
     st.info(":material/search_insights: Comparing category vs numeric visualisations")
 
+     # Define numerical fields for distribution plots
+    numeric_fields = [ "age", "daily_screen_time_min", "social_media_time_min", "sleep_hours", "physical_activity_min" ]
+
+    # add multi select to pick fields to plot
+    fields = st.multiselect("Select numerical features", options=numeric_fields)
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        # define category fields that can be selected
+        category_fields = [ 'platform', 'age_group', 'gender', 'mental_state', 'anxiety_level', 'stress_level', 'mood_level' ]
+
+        # add dropdown to select category
+        category = st.selectbox("Select Category", options=category_fields, index=0)
+
+    with col2:
+        if len(fields) == 0:
+            chart_type = None
+        else:
+            # add dropdown to select chart type
+            chart_type = st.selectbox("Select chart type", ["Box Plot", "Violin Plot", "Bar Chart"] if len(fields) == 1 else ["Grouped Bar Chart"], index=0)
+
+    fig = plt.figure(figsize=(12, 8))
+    ax = fig.add_subplot(1, 1, 1)
+
+    match chart_type:
+        case "Box Plot":
+            # Add a box plot
+            sns.boxplot(data=df, x=category, y=fields[0], color="skyblue", ax=ax)
+            # Add a title and labels
+            ax.set_title(f"{fields[0].replace('_', ' ').title()} by {category.replace('_', ' ').title()}", fontsize=16)
+            ax.set_xlabel(category.replace('_', ' ').title())
+            ax.set_ylabel(fields[0].replace('_', ' ').title())
+        case "Violin Plot":
+            # Add a violin plot
+            sns.violinplot(data=df, x=category, y=fields[0], inner="quartile", color="skyblue", legend=False, ax=ax)
+            # Add a title and labels
+            ax.set_title(f"{fields[0].replace('_', ' ').title()} by {category.replace('_', ' ').title()}", fontsize=16)
+            ax.set_xlabel(category.replace('_', ' ').title())
+            ax.set_ylabel(fields[0].replace('_', ' ').title())
+        case "Bar Chart":
+            # Add a bar chart
+            sns.barplot(data=df, x=category, y=fields[0], color="skyblue", ax=ax)
+            # Add a title and labels
+            ax.set_title(f"{fields[0].replace('_', ' ').title()} by {category.replace('_', ' ').title()}", fontsize=16)
+            ax.set_xlabel(category.replace('_', ' ').title())
+            ax.set_ylabel(fields[0].replace('_', ' ').title())
+        case "Grouped Bar Chart":
+            plot_group_by_bar(
+                axes=ax,
+                df=df_filtered,
+                columns=fields,
+                group_by=category,
+                title=f"Comparison of " + ", ".join([f.replace('_', ' ').title() for f in fields]) + f" by {category.replace('_', ' ').title()}"
+            )
+    if chart_type is not None:
+        plt.tight_layout()
+        st.pyplot(fig)
+    else:
+        st.warning("Please select at least one numerical feature to plot. More chart types become available when only one numerical feature is selected.")
+
+
 with tab6:
     st.info( ":material/looks_one: Comparing numeric vs numeric visualisations as a scatter plot")
 
@@ -617,5 +679,67 @@ with tab7:
         st.pyplot(fig)
 
 with tab8:
-    st.info(":material/monitoring: Trends Over Time")
+    st.info(":material/monitoring: Trends Over Time visualisations, with options for aggregation and rolling averages")
+
+    # Define numerical fields for trend over time plots
+    available_fields = [ "daily_screen_time_min", "social_media_time_min", "sleep_hours", "physical_activity_min" ]
+
+    # add multi select to pick fields to plot
+    fields = st.multiselect("Select features", options=available_fields)
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        # sample frequency dropdown
+        frequency = st.selectbox("Select sample frequency", ["Daily", "Weekly", "Monthly"], index=1)
+
+    with col2:
+        # select aggregation method
+        aggregation_method = st.selectbox("Select aggregation method", ["Mean", "Median", "Sum"], index=0)
+
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        # Force y-axis to start at 0 toggle
+        force_y_zero = st.toggle("Force Y-Axis to start at 0", value=False)
+     
+    with col2:
+        # Show variability band toggle
+        show_variability = st.toggle("Show Variability Band", value=False)
+    
+    with col3:
+        # show rolling average
+        show_rolling_average = st.toggle("Show Rolling Average", value=False)
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        # rolling window size slider
+        if show_rolling_average:
+            rolling_window = st.slider("Rolling window size (periods)", 2, 12, 4)        
+        else:        
+            rolling_window = None
+    
+    # create figure
+    fig = plt.figure(figsize=(12, 8))
+    ax = fig.add_subplot(1, 1, 1)
+
+    # create trend over time plot
+    plot_trend_over_time(
+        ax=ax,
+        df=df_filtered,
+        fields=fields,
+        frequency=frequency,
+        aggregation_method=aggregation_method,
+        force_y_zero=force_y_zero,
+        show_variability=show_variability,
+        show_rolling_average=show_rolling_average,
+        rolling_window=rolling_window
+    )
+
+    if len(fields) == 0:
+        st.warning("Please select at least one feature to plot.")
+    else:
+        # display figure
+        st.pyplot(fig)
 

@@ -262,3 +262,128 @@ def plot_stacked_category(axes, df, group_one, group_two, title):
                 )
             # Update cumulative value
             cumulative += value
+
+
+
+
+def plot_group_by_bar(axes, df, group_by, columns, title):
+    '''
+    Plots a single grouped bar plot.
+    
+    Parameters:
+    - axes: matplotlib axes object where the plot will be drawn.
+    - df: DataFrame containing the data.
+    - group_by: Column name to group the data by (categorical).
+    - columns: List of column names to plot (numerical).
+    - title: Title of the grouped bar plot.
+    Returns:
+    - None
+    '''
+
+    # Group by mean
+    df_grouped = df.groupby(group_by, observed=False)[columns].mean().reset_index()
+
+    # Melt to long format
+    df_melted = df_grouped.melt(
+        id_vars=group_by,
+        value_vars=columns,
+        var_name="Metric",
+        value_name="Value"
+    )
+
+    # Plot grouped bar chart
+    sns.barplot(
+        data=df_melted,
+        x=group_by,
+        y="Value",
+        hue="Metric",
+        palette="pastel",
+        ax=axes
+    )
+
+    # Set plot title and labels
+    axes.set_title(title)
+    axes.set_ylabel("Mean Value")
+    axes.set_xlabel(group_by.replace("_", " ").title())
+
+
+
+def plot_trend_over_time(ax, df, fields, frequency, aggregation_method,
+                         force_y_zero, show_variability, show_rolling_average, rolling_window):
+    """
+    Plots a trend over time plot for selected fields.
+
+    Parameters:
+    - ax : The axes on which to plot
+    - df : The DataFrame containing the data
+    - fields : List of numerical fields to plot
+    - frequency : Resampling frequency ("Daily", "Weekly", "Monthly")
+    - aggregation_method : Aggregation method ("Mean", "Sum", "Median")
+    - force_y_zero : Whether to force y-axis to start at zero
+    - show_variability : Whether to show variability (standard deviation)
+    - show_rolling_average : Whether to show rolling average
+    - rolling_window : Window size for rolling average
+    Returns:
+    - None
+    """
+
+    resample_rate_map = {
+        "Daily": "D",
+        "Weekly": "W",
+        "Monthly": "M"
+    }
+
+    # select only date + fields
+    numeric_df = df[["date"] + fields].copy()
+
+    # Convert aggregation_method ("Mean") → "mean"
+    agg_func = aggregation_method.lower()
+
+    # Resample only the needed numeric columns
+    df_resampled = (
+        numeric_df
+        .set_index("date")
+        .resample(resample_rate_map[frequency])
+        .agg(agg_func)
+        .reset_index()
+    )
+
+    # Plot each field
+    for field in fields:
+        ax.plot(df_resampled["date"], df_resampled[field], label=field.replace("_", " ").title())
+
+        if show_variability:
+            # Calculate standard deviation
+            std_dev = (
+                numeric_df
+                .set_index("date")
+                .resample(resample_rate_map[frequency])[field]
+                .std()
+                .reset_index(drop=True)
+            )
+
+            # Plot shaded area for variability
+            ax.fill_between(
+                df_resampled["date"],
+                df_resampled[field] - std_dev,
+                df_resampled[field] + std_dev,
+                alpha=0.2
+            )
+
+        if show_rolling_average:
+            # Calculate rolling average
+            rolling_avg = df_resampled[field].rolling(window=rolling_window, min_periods=1).mean()
+            # Plot rolling average
+            ax.plot(df_resampled["date"], rolling_avg, linestyle="--",
+                    label=f"{field.replace('_', ' ').title()} (Rolling Avg)")
+
+    # Titles
+    ax.set_title("Trends Over Time", fontsize=16)
+    ax.set_xlabel("Date")
+    ax.set_ylabel("Value")
+    ax.legend()
+
+    if force_y_zero:
+        # Force y-axis to start at zero
+        ax.set_ylim(bottom=0)
+
