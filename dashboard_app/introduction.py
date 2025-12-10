@@ -149,7 +149,7 @@ st.markdown(
 
     ### 3. **Hypothesis Testing**
     A presentation of statistical tests performed on the dataset  
-    (ANOVA, correlation tests).
+    (ANOVA, Chi-Square, correlation tests).
 
     ### 4. **Clusters**
     Clustering analysis results including:
