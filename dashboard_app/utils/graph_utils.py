@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import numpy as np
 
 def plot_distribution(
     axes, type, df, column, bins, kde,
@@ -186,3 +187,78 @@ def plot_frequency(axes, df, column, percentage_label):
                 ha="center", va="bottom",        # alignment
                 fontsize=10
             )
+
+
+def plot_stacked_category(axes, df, group_one, group_two, title):
+    """
+    Plots a 100% stacked bar chart for two categorical variables.
+    
+    Parameters:
+    - axes: matplotlib Axes object
+    - df: DataFrame
+    - group_one: main x-axis category
+    - group_two: sub-category stacked in each bar
+    - title: chart title
+    """
+
+    # Compute counts
+    counts = (
+        df.groupby([group_one, group_two], observed=False)
+          .size()
+          .reset_index(name="count")
+    )
+
+    # Compute total per group_one
+    totals = counts.groupby(group_one, observed=False)["count"].transform("sum")
+
+    # Compute proportions
+    counts["proportion"] = counts["count"] / totals
+
+    # Pivot for stacked bar format
+    stacked = counts.pivot(index=group_one, columns=group_two, values="proportion").fillna(0)
+
+    # Plot 100% stacked bars
+    bottom = np.zeros(len(stacked))
+
+    # Set colours
+    colours = sns.color_palette("pastel", len(stacked.columns))
+
+    # Plot stacked bars
+    for col, colour in zip(stacked.columns, colours):
+        axes.bar(
+            stacked.index,
+            stacked[col],
+            bottom=bottom,
+            label=col,
+            width=0.7,
+            color=colour
+        )
+        bottom += stacked[col]
+
+    # Set titles and labels
+    axes.set_title(title)
+    axes.set_ylabel("Proportion")
+    axes.set_xlabel(group_one.replace("_", " ").title())
+    axes.legend(title=group_two)
+
+    # Show percentages on bars
+    # Iterate through each main category
+    for i, category in enumerate(stacked.index):
+        cumulative = 0
+        # Iterate through each sub-category
+        for col in stacked.columns:
+            value = stacked.loc[category, col]
+            # Only show values > 3% due to space
+            if value > 0.03:
+                # Show percentage text
+                axes.text(
+                    i, 
+                    cumulative + value / 2,
+                    f"{value*100:.0f}%",
+                    ha="center",
+                    va="center",
+                    fontsize=9,
+                    color="black"
+                )
+            # Update cumulative value
+            cumulative += value

@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 from datetime import date
 from utils.data_utils import load_data
-from utils.graph_utils import plot_distribution, plot_frequency
+from utils.graph_utils import plot_distribution, plot_frequency, plot_stacked_category
 
 st.set_page_config(
     layout="wide",
@@ -127,7 +127,7 @@ tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 = st.tabs(
              ":material/monitoring: Trends Over Time"])
 
 with tab1:
-    st.info(":material/table: Table View")
+    st.info(":material/table: Table View of the raw data")
 
     # Define full list of fields to be displayed in the table
     all_fields = ["date", "year", "month", "month_name", "week_number", "day_of_week", 	
@@ -528,12 +528,10 @@ with tab4:
         st.warning("Please select at least two numerical features to compute correlations.")
 
 with tab5:
-    st.info(":material/search_insights: Category vs Numeric")
-
-    st.caption("Comparing category vs numeric visualisations.")
+    st.info(":material/search_insights: Comparing category vs numeric visualisations")
 
 with tab6:
-    st.info( ":material/looks_one: Numeric vs Numeric")
+    st.info( ":material/looks_one: Comparing numeric vs numeric visualisations as a scatter plot")
 
     st.caption("Comparing numeric vs numeric visualisations as a scatter plot.")
 
@@ -584,9 +582,39 @@ with tab6:
     st.pyplot(fig)
 
 with tab7:
-    st.info(":material/category: Category vs Category")
+    st.info(":material/category: Comparing category vs category visualisation as a stacked bar chart")
 
-    st.caption("Comparing category vs category visualisations.")
+    # define category fields that can be selected
+    category_fields = [ 'platform', 'age_group', 'gender', 'mental_state', 'anxiety_level', 'stress_level', 'mood_level' ]
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        # add dropdown to select x axis
+        x_axis = st.selectbox("Select X-Axis category", options=category_fields[:-3], index=0)
+    
+    with col2:
+        # add dropdown to select y axis
+        colour_category = st.selectbox("Select colour category", options=category_fields, index=1)
+
+    if x_axis == colour_category:
+        st.warning("Please select different categories for X-Axis and Colour.")
+    else:
+        # create figure
+        fig = plt.figure(figsize=(12, 8))
+        ax = fig.add_subplot(1, 1, 1)
+
+        # create stacked bar chart
+        plot_stacked_category(
+            axes=ax,
+            df=df_filtered,
+            group_one=x_axis,
+            group_two=colour_category,
+            title=f"{x_axis.replace('_', ' ').title()} vs {colour_category.replace('_', ' ').title()}"
+        )
+
+        # display figure
+        st.pyplot(fig)
 
 with tab8:
     st.info(":material/monitoring: Trends Over Time")
