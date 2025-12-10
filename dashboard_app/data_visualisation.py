@@ -10,6 +10,24 @@ st.set_page_config(
     layout="wide",
 )
 
+if "page" not in st.session_state:
+    # Initialise the page number in session state to 1
+    st.session_state.page = 1
+
+def reset_page():
+    """Reset the page number to 1 when called."""
+    st.session_state.page = 1
+
+def next_page(total_pages):
+    """Increment the page number by 1 when called."""
+    if st.session_state.page < total_pages:
+        st.session_state.page += 1
+
+def prev_page():
+    """Decrement the page number by 1 when called."""
+    if st.session_state.page > 1:
+        st.session_state.page -= 1
+
 # Load the cleaned dataset
 df = load_data()
 
@@ -32,6 +50,87 @@ tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs([":material/table: Table", ":materi
 
 with tab1:
     st.info(":material/table: Table View")
+
+    # Define full list of fields to be displayed in the table
+    all_fields = ["date", "year", "month", "month_name", "week_number", "day_of_week", 	
+                  "age", "age_group", "gender",
+                  "platform", "daily_screen_time_min", "social_media_time_min", "sleep_hours", "physical_activity_min", 	
+                  "negative_interactions_count", "positive_interactions_count", "interaction_total", "interaction_negative_ratio", 	
+                  "anxiety_level", "stress_level", "mood_level", "mental_state"]
+    
+    # add multi select to pick fields to display
+    fields = st.multiselect("Select columns to display in table", options=all_fields, default=all_fields)
+
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        # Add a page size slider
+        page_size = st.slider("Select number of rows per page", min_value=5, max_value=100, value=20, step=5, on_change=reset_page)
+
+    with col2:
+        # Sort by column dropdown
+        sort_by = st.selectbox("Sort by column", options=["None"] + fields, index=0, on_change=reset_page)
+
+    with col3:
+        # sort order dropdown
+        sort_order = st.selectbox("Sort order", options=["Ascending", "Descending"], index=0, on_change=reset_page)
+
+    # Sort the entire dataset first
+    if sort_by != "None":
+        # Sort by selected column
+        sorted_df = df_filtered[fields].sort_values(
+            by=sort_by,
+            ascending=(sort_order == "Ascending")
+        )
+    else:
+        # Sort by index instead
+        sorted_df = df_filtered[fields].sort_index(
+            ascending=(sort_order == "Ascending")
+        )
+
+    # Pagination setup
+    total_rows = len(sorted_df)
+    total_pages = (total_rows - 1) 
+    
+    # Clamp page to valid range
+    if st.session_state.page > total_pages:
+        st.session_state.page = total_pages
+    if st.session_state.page < 1:
+        st.session_state.page = 1
+
+    page = st.session_state.page
+
+    start = (page - 1) * page_size
+    end = start + page_size
+    page_df = sorted_df.iloc[start:end]
+
+    # Display
+    st.dataframe(page_df, width="stretch", height=600)
+
+    info_col, buttons_col = st.columns(2)
+
+    with info_col:
+        # Display page info
+        st.caption(f"Showing rows {start + 1} to {min(end, total_rows)} of {total_rows}. (Page {page}/{total_pages})")
+
+    with buttons_col:
+        # Add previous and next page buttons
+        col1, col2 = st.columns(2)
+        with col1:
+            st.button(
+                "Previous Page",
+                disabled=(page <= 1),
+                on_click=prev_page,
+                width="stretch"
+            )
+        with col2:
+            st.button(
+                "Next Page",
+                disabled=(page >= total_pages),
+                on_click=lambda: next_page(total_pages),
+                width="stretch"
+            )
+        
 
 with tab2:
     st.info(":material/leaderboard: Distributions of numerical features")
@@ -278,30 +377,33 @@ with tab4:
         # Add a correlation method dropdown
         method = st.selectbox("Select correlation method", ["Pearson", "Spearman", "Kendall"])
 
-    if type == "Heatmap":
-        decimal_options = ["No values shown", "0", "1", "2", "3", "4", "5"]
-    else:
-        decimal_options = ["0", "1", "2", "3", "4", "5"]
-
     col1, col2 = st.columns(2)
 
     with col1:
+        # Define decimal options based on chart type
+        if type == "Heatmap":
+            decimal_options = ["No values shown", "0", "1", "2", "3", "4", "5"]
+        else:
+            decimal_options = ["0", "1", "2", "3", "4", "5"]
+
         # User selects number of decimals
         decimals = st.selectbox("Number format, the number of decimal places:", decimal_options, index=2 if type=="Heatmap" else 2)
  
     with col2:
-        colours_list = [
-                            {"name": "Yellow Green Blue", "value": "YlGnBu"},
-                            {"name": "Cool Warm", "value": "coolwarm"},
-                            {"name": "Yellow Orange Brown", "value": "YlOrBr"},
-                            {"name": "Viridis", "value": "viridis"},
-                            {"name": "Magma", "value": "magma"},
-                        ]
-        # User selects colour name
-        colour_name = st.selectbox("Select Colour Map for Heatmap", [c["name"] for c in colours_list])
+        if type == "Heatmap":
+            # Define available colour maps
+            colours_list = [
+                                {"name": "Yellow Green Blue", "value": "YlGnBu"},
+                                {"name": "Cool Warm", "value": "coolwarm"},
+                                {"name": "Yellow Orange Brown", "value": "YlOrBr"},
+                                {"name": "Viridis", "value": "viridis"},
+                                {"name": "Magma", "value": "magma"},
+                            ]
+            # User selects colour name
+            colour_name = st.selectbox("Select colour for Heatmap", [c["name"] for c in colours_list])
 
-        # Get colour map value
-        colour_map = next(c["value"] for c in colours_list if c["name"] == colour_name)
+            # Get colour map value
+            colour_map = next(c["value"] for c in colours_list if c["name"] == colour_name)
 
 
     # Determine formatting
@@ -339,7 +441,7 @@ with tab4:
             # Add a matrix title
             st.markdown("**Correlation Matrix**" + f" - ({method} Method)")
             # Display the correlation matrix as a styled dataframe
-            st.dataframe(corr.style.format(table_fmt), use_container_width=True)
+            st.dataframe(corr.style.format(table_fmt), width="stretch")
     else:
         # Display a warning if less than two features are selected
         st.warning("Please select at least two numerical features to compute correlations.")
