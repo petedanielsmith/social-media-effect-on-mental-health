@@ -4,7 +4,7 @@ import seaborn as sns
 import pandas as pd
 import numpy as np
 from utils.data_utils import load_data
-from utils.graph_utils import plot_distribution
+from utils.graph_utils import plot_distribution, plot_frequency
 
 st.set_page_config(
     layout="wide",
@@ -191,6 +191,69 @@ with tab2:
 
 with tab3:
     st.info(":material/bar_chart: Frequency Charts for categorical features")
+
+    # Define fields for frequency plots
+    freq_fields = [ 'age_group', 'platform', 'gender', 'mental_state', 'anxiety_level', 
+                    'stress_level', 'mood_level', 'month_name', 'day_of_week', 'week_number', 
+                    'negative_interactions_count', 'positive_interactions_count', 'interaction_total', 'interaction_negative_ratio' ]
+
+    # add multi select to pick fields to plot frequencies for features
+    fields = st.multiselect("Select features to plot frequencies", options=freq_fields, default=[f for f in freq_fields if f not in ["interaction_negative_ratio", "week_number"]])
+    
+    col1, col2 = st.columns(2)
+
+    with col1:
+        # Add a toggle for including percentages
+        include_percentages = st.toggle("Include percentages on bars", value=False)
+
+    # Create subplots based on number of fields selected to change the grid layout dynamically
+    match len(fields):
+        case 0 | 1:
+            fig, ax = plt.subplots(1, 1, figsize=(20, 10))
+        case 2:
+            fig, ax = plt.subplots(1, 2, figsize=(20, 10))
+        case 3 | 4:
+            fig, ax = plt.subplots(2, 2, figsize=(20, 12))
+        case 5 | 6:
+            fig, ax = plt.subplots(3, 2, figsize=(20, 15))
+        case 7 | 8:
+            fig, ax = plt.subplots(4, 2, figsize=(20, 18))
+        case 9 | 10:
+            fig, ax = plt.subplots(5, 2, figsize=(20, 20))
+        case 11 | 12:
+            fig, ax = plt.subplots(6, 2, figsize=(20, 25))
+        case 13 | 14:
+            fig, ax = plt.subplots(7, 2, figsize=(20, 30))
+        
+
+    if isinstance(ax, np.ndarray):
+        # Flatten the 2D array of axes to 1D for easier indexing
+        ax = ax.flatten()
+    else:
+        # is only one plot, convert to list so for loop works
+        ax = [ax]
+
+    # for each field, plot the frequency
+    for i, field in enumerate(fields):
+        # call the plot frequency function from graph_utils to draw that fields frequency
+        plot_frequency(
+            axes=ax[i],
+            df=df_filtered,
+            column=field,
+            percentage_label=include_percentages
+        )
+    
+    # Hide unused subplots to make the layout cleaner
+    if(len(fields) == 0):
+        ax[0].set_visible(False)
+    else:
+        for j in range(i + 1, len(ax)):
+            ax[j].set_visible(False)
+
+    # Adjust layout
+    plt.tight_layout()
+    st.pyplot(fig)
+    
 
 with tab4:
     st.info(":material/grid_on: Correlation Matrix and Heatmaps")

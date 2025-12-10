@@ -145,3 +145,43 @@ def plot_distribution(
 
     # Adjust layout to prevent clipping
     axes.figure.tight_layout()
+
+
+
+def plot_frequency(axes, df, column, percentage_label):
+    """
+    Plots the frequency distribution of a categorical column as a bar plot,
+    with optional percentage labels on each bar.
+    
+    Parameters:
+    - axes : The axes on which to plot
+    - df : The DataFrame containing the data
+    - column : The column name of the categorical data to plot
+    - percentage_label : Whether to include percentage labels on bars
+    Returns:
+    - None
+    """
+    
+    # Draw the bar plot
+    sns.countplot(x=column, data=df, color="skyblue", ax=axes)
+    
+    # Set labels
+    axes.set_title(column.replace("_", " ").title(), fontsize=16)
+    axes.set_ylabel("Frequency")
+    axes.set_xlabel(column.replace("_", " ").title())
+
+    if percentage_label:
+        # Calculate counts and percentages
+        total = len(df)
+        
+        # Loop through bars
+        for p in axes.patches:
+            height = p.get_height()
+            percentage = 100 * height / total
+            axes.text(
+                p.get_x() + p.get_width() / 2,   # x position (center of bar)
+                height,                          # y position (top of bar)
+                f"{percentage:.1f}%",            # label text
+                ha="center", va="bottom",        # alignment
+                fontsize=10
+            )
