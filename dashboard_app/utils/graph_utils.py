@@ -76,9 +76,9 @@ def plot_distribution(
 
     # Add Title + subtitle
     if sub_text:
-        axes.set_title(f"Histogram of {col_title}\n{sub_text}", fontsize=16, pad=20)
+        axes.set_title(f"{col_title}\n{sub_text}", fontsize=16, pad=20)
     else:
-        axes.set_title(f"Histogram of {col_title}", fontsize=16)
+        axes.set_title(f"{col_title}", fontsize=16)
 
     # Set axis labels
     axes.set_xlabel(col_title)

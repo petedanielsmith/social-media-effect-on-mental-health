@@ -57,27 +57,31 @@ with tab2:
     
     # Extra options expander
     with st.expander("Extra Options"):
+        
         col1, col2, col3 = st.columns(3)
 
         with col1:
-            # Add mean line toggle
-            on = st.toggle("Add Mean Line", value=False)
+            # Add skewness sub title toggle
+            on = st.toggle("Add skewness", value=False)
             if on:
-                show_mean = True
+                show_skewness = True
             else:
-                show_mean = False
-
+                show_skewness = False
         with col2:
-            # Add median line toggle
-            on = st.toggle("Add Median Line", value=False)
+            # Add kurtosis sub title toggle
+            on = st.toggle("Add kurtosis", value=False)
             if on:
-                show_median = True
+                show_kurtosis = True
             else:
-                show_median = False
+                show_kurtosis = False
 
         with col3:
-            # Add standard deviation line dropdown
-            std_line = st.selectbox("Add Standard Deviation Line", ["None", "1 SD", "2 SD", "3 SD"])
+            # Add count toggle
+            on = st.toggle("Add count", value=False)
+            if on:
+                show_count = True
+            else:
+                show_count = False
 
         col1, col2, col3 = st.columns(3)
 
@@ -105,30 +109,29 @@ with tab2:
             else:
                 show_iqr = False
 
+        
+        
         col1, col2, col3 = st.columns(3)
 
         with col1:
-            # Add skewness sub title toggle
-            on = st.toggle("Add skewness", value=False)
+            # Add mean line toggle
+            on = st.toggle("Add Mean Line", value=False)
             if on:
-                show_skewness = True
+                show_mean = True
             else:
-                show_skewness = False
+                show_mean = False
+
         with col2:
-            # Add kurtosis sub title toggle
-            on = st.toggle("Add kurtosis", value=False)
+            # Add median line toggle
+            on = st.toggle("Add Median Line", value=False)
             if on:
-                show_kurtosis = True
+                show_median = True
             else:
-                show_kurtosis = False
+                show_median = False
 
         with col3:
-            # Add count toggle
-            on = st.toggle("Add count", value=False)
-            if on:
-                show_count = True
-            else:
-                show_count = False
+            # Add standard deviation line dropdown
+            std_line = st.selectbox("Add Standard Deviation Line", ["None", "1 SD", "2 SD", "3 SD"])
 
     # Create subplots based on number of fields selected to change the grid layout dynamically
     match len(fields):
