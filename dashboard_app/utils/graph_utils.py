@@ -158,6 +158,7 @@ def plot_frequency(axes, df, column, percentage_label):
     - df : The DataFrame containing the data
     - column : The column name of the categorical data to plot
     - percentage_label : Whether to include percentage labels on bars
+    
     Returns:
     - None
     """
