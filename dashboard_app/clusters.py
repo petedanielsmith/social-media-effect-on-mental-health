@@ -62,8 +62,104 @@ with tab2:
 with tab3:
     st.info('Methodology behind the clustering process I used', icon=":material/menu_book:")
 
-    st.markdown(
-        """
-        Methodology for clustering will go here.
-    """
-    )
+    st.write("## Clustering Methodology")
+
+    st.markdown("""
+    This page outlines the full methodology used to cluster users based on their behavioural, lifestyle, and mental-health indicators.  
+    The goal was to uncover meaningful user personas that reflect distinct patterns in screen time, emotional wellbeing, and digital habits.
+    """)
+
+    st.write("### Pipeline Structure")
+    st.code("""
+    pipeline = Pipeline(steps=[
+        ("onehot", OneHotEncoder(variables=categorical_features, drop_last=True)),
+        ("scaler", StandardScaler()),
+        ("kmeans", KMeans(n_clusters=7, random_state=42, n_init="auto"))
+    ])
+    """, language="python")
+
+    st.markdown("""
+    The clustering pipeline performed:
+
+    - **Categorical encoding** using OneHotEncoder  
+    - **Standardisation** using StandardScaler  
+    - **K-Means clustering**, where the number of clusters *k* was selected through multiple validation methods  
+    """)
+
+    st.write("### Selecting the Number of Clusters")
+
+    st.markdown("""
+    To find the best value of **k**, I evaluated:
+
+    #### **1. Silhouette Scores**
+    Tested k = 2 → 10.
+
+    - Highest average silhouette score was **k = 8** (≈ 0.342)
+    - **k = 7** and **k = 5** also performed well, showing clean structure
+    - Very high silhouette scores here reflect the synthetic nature of the dataset
+
+    #### **2. Elbow Method**
+    The elbow plot showed:
+
+    - Small elbows at **k = 5** and **k = 7**
+    - A deeper elbow at **k = 8**
+    - k = 9 increased slightly but without meaningful structural improvement
+
+    This suggested a possible range of **5–8 clusters**.
+
+    #### **3. PCA Visualisation**
+    To visually assess cluster separation, I plotted 2D PCA projections for **k = 5, 7, and 8**.
+
+    """)
+
+    st.write("### PCA Cluster Comparisons")
+
+    st.markdown("""
+    #### **k = 5 — Broad, but mixed clusters**
+    - Clear high-level groupings  
+    - Some clusters contain more than one behavioural pattern  
+    - PCA shows overlapping internal sub-groups → under-segmentation  
+
+    #### **k = 7 — Best balance**
+    - Strong separation with no noisy or tiny clusters  
+    - PCA shows well-defined, stable cluster shapes  
+    - Subgroups become meaningful and interpretable  
+    - Silhouette score (≈ 0.311) remains high and consistent  
+    - Clear behavioural “persona” profiles emerge  
+
+    #### **k = 8 — Over-fragmentation**
+    - Several clusters split unnecessarily  
+    - Some clusters become nearly identical  
+    - One large, meaningful group is chopped into two  
+    - Begins to capture noise instead of structure  
+
+    **Final Choice: `k = 7`**  
+    This value captures distinct behavioural groups without splitting meaningful patterns.  
+    """)
+
+    st.write("### Persona Creation")
+    st.markdown("""
+    After selecting **k = 7**, I extracted the cluster centroids and analysed the average characteristics of each group.  
+    These were then transformed into human-readable personas that describe:
+
+    - Lifestyle patterns  
+    - Digital behaviour  
+    - Emotional wellbeing  
+    - Social interaction quality  
+
+    These personas help translate raw cluster statistics into understandable groups.
+    """)
+
+    st.write("### Conclusion")
+
+    st.markdown("""
+    The clustering analysis revealed highly distinct user groups:
+
+    - Younger users with **high screen time**, **frequent negative interactions**, and **heavy social media use** tended to fall into stressed or anxious clusters.
+    - A single group of older users with **low screen time**, **high physical activity**, and **no negative interactions** emerged as the only cluster classified as *mentally healthy*.
+    - The patterns reinforce the broader analytical finding:  
+    **More digital engagement—especially negative interactions—is linked to poorer mental wellbeing**, while **balanced use and active lifestyles** correlate with better outcomes.
+
+    Overall, the clustering step provided a clear persona-level perspective on how digital habits map to mental health within this synthetic dataset.
+    """)
+
