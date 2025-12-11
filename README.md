@@ -307,7 +307,19 @@ These visualisations are specifically mapped to the business goals: (1) detect b
 
 ## Analysis techniques used
 
-TODO --------
+The following techniques and statistical methods were used throughout the project:
+
+- Exploratory Data Analysis (EDA): Summary statistics, distribution and boxplots to understand variable behaviour and detect outliers or patterns.
+
+- Statistical testing: One-way ANOVA and chi-square tests were used to test hypotheses about differences between groups (e.g., mental state by platform) and associations between categorical variables.
+
+- Correlation analysis: Pearson and Spearman correlations to quantify linear and rank-based relationships between numeric features.
+
+- Unsupervised learning (Clustering): K-Means clustering to discover latent groups of users with similar attribute profiles.
+
+- Supervised learning (Prediction): Models such as Random Forest and Linear Regression to predict mental health outcomes (e.g., stress, mood) using behavioural and demographic features.
+
+These methods provide both descriptive and predictive insights into how behavioural variables relate to mental health outcomes.
 
 ## Ethical considerations
 
