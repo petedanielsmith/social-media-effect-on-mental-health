@@ -45,9 +45,9 @@
 - `dashboard_app` - root folder of the Streamlit dashnoard app
   - `utils` - folder that contains my shared utility library Python files
     - `graph_utils.py` - Various functions to generate custom charts
-  - `model_utils.py`- Funcitons for loading cached models
-  - `persona_utils.py` - Functions for loading the cluster data and cleaning it to apply to filter values
-  - `ui_components.py` - Single function for a section header that displays a title, number in a circle and horizontal line
+    - `model_utils.py`- Funcitons for loading cached models
+    - `persona_utils.py` - Functions for loading the cluster data and cleaning it to apply to filter values
+    - `ui_components.py` - Single function for a section header that displays a title, number in a circle and horizontal line
   - `main.py` - Main entry point with routing info for the streamlit multi page app
   - `introduction.py` - Introduction page of the dashboard
   - `data_visualisation.py' - Visualisation page for the dashboard
