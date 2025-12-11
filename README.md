@@ -293,7 +293,17 @@ The prjoject follows the following steps:
 
 ## The rationale to map the business requirements to the Data Visualisations
 
-TODO --------
+The visualisations in this project are designed to support the business requirements by highlighting trends and relationships that contribute to understanding mental health outcomes in relation to social media behaviour. Specifically:
+
+1. Distribution plots show how variables such as screen time and social media usage vary across different mental health states, helping to identify high-impact behavioural patterns.
+
+2. Correlation heatmaps and scatterplots reveal potential associations between lifestyle factors (e.g., sleep, physical activity) and mental wellbeing, fulfilling the requirement to detect meaningful influences on mental health outcomes.
+
+3. Cluster plots group users with similar profiles to uncover common behavioural clusters, aiding insight for targeted intervention strategies.
+
+4. Predictive model evaluation charts (e.g., residual curves, feature importance) demonstrate how well machine learning models can forecast mental wellbeing based on available predictors.
+
+These visualisations are specifically mapped to the business goals: (1) detect behavioural trends affecting mental state, and (2) provide interpretable insights for non-technical stakeholders to explore predictive relationships interactively.
 
 ## Analysis techniques used
 
