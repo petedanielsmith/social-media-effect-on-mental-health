@@ -190,14 +190,30 @@ The libraries used for data analysis were:
 
 ### Content
 
-- The text for the Home page was taken from Wikipedia Article A
-- Instructions on how to implement form validation on the Sign-Up page was taken from [Specific YouTube Tutorial](https://www.youtube.com/)
-- The icons in the footer were taken from [Font Awesome](https://fontawesome.com/)
+- [Code institute](https://codeinstitute.net/) - The intial project structure.
+- [Kaggle](https://www.kaggle.com/) - Providing the data set used.
+- [ChatGPT](https://chatgpt.com/) - Used to invent the user personas from my centroid means, rewriting contnent sections in notebooks and dashboard, bouncing ideas off and refactoring some code.
+- [Github Copiolot](https://github.com/features/copilot) - Adding function docstrings and commenting code and speeding up repetative tasks.
+- [Streamlit API Documentation](https://docs.streamlit.io/develop/api-reference) - One of the best, easy to use, product API documentation I have used.
+- [SimpleSteps.guide](https://simplesteps.guide/guides/technology/machine-learning-ai) - My notes I recorded from the Code Institute course.
 
 ### Media
 
-- The photos used on the home and sign-up page are from This Open-Source site
-- The images used for the gallery page were taken from this other open-source site
+- [Google AI - Gemini 3](https://deepmind.google/models/gemini/) - AI generated persona images for the dashboard cluster page and banner logo for this README file.
+- [Google Material Icons](https://fonts.google.com/icons) - Icons in the dashboard.
+- [Code Institute](https://codeinstitute.net/) - Code Institute logo.
+- [Python](https://www.python.org/) - Python logo image.
+- [Pandas](https://pandas.pydata.org/) - Pandas logo image.
+- [Matplotlib](https://matplotlib.org/) - Matplotlib logo image.
+- [Seaborn](https://seaborn.pydata.org/) - Seaborn logo image.
+- [Plotly](https://plotly.com/python/) - Plotly logo image.
+- [Kaggle](https://www.kaggle.com/) - Kaggle logo image.
+- [Scikit-learn](https://scikit-learn.org/stable/) - Scikit-learn logo image.
+- [Pingouin](https://pingouin-stats.org/build/html/index.html) - Pingouin logo image.
+- [SciPy](https://scipy.org/) - SciPy logo image.
+- [Streamlit](https://docs.streamlit.io/) - Steamlit logo image.
+- [Feature-engine](https://feature-engine.trainindata.com/en/latest/) - Feature-engine logo image.
+- [Imbalanced-learn](https://imbalanced-learn.org/stable/) - Imbalanced-learn logo image.
 
 ## Acknowledgements (optional)
 
