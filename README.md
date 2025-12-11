@@ -336,7 +336,19 @@ This project deals with sensitive behavioural and mental health-related data. Ke
 
 ## Dashboard Design
 
-TODO --------
+The dashboard is built with Streamlit and provides an interactive interface for exploring the data and models:
+
+- `Introduction Page`: High-level overview of the dataset and project goals.
+
+- `Data Visualisation`: Users can explore distributions and relationships between variables and mental health outcomes. The aim is on allowing users with no coding experince to be able to create the graphs they require and configure them as needed.
+
+- `Statistical Testing`: Sections where hypothesis tests results are displayed with context and interpretation.
+
+- `Clustering Explorer`: Visualise user clusters and understand profile characteristics.
+
+- `Prediction Tools`: Enter custom inputs to see predictions of mental health metrics such as stress or mood.
+
+The design focuses on clarity, interactive filtering, and storytelling to guide users from raw data to analytical insights. Consistent colours for the charts, and designs are also used throughout.
 
 ## Unfixed Bugs
 
