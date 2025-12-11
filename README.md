@@ -37,7 +37,106 @@
 </p>
 
 <details>
-<summary>Project Structure (Click to show)</summary>
+<summary align="center">Table of contents (Click to show)</summary>
+
+- [Dataset Content](#dataset-content)
+- [Business Requirements](#business-requirements)
+- [Hypothesis and how to validate](#hypothesis-and-how-to-validate)
+- [Project Plan](#project-plan)
+- [The rationale to map the business requirements to the Data Visualisations](#the-rationale-to-map-the-business-requirements-to-the-data-visualisations)
+- [Analysis techniques used](#analysis-techniques-used)
+- [Ethical considerations](#ethical-considerations)
+- [Dashboard Design](#dashboard-design)
+- [Unfixed Bugs](#unfixed-bugs)
+- [Development Roadmap](#development-roadmap)
+- [Conclusions](#conclusions)
+- [Deployment](#deployment)
+- [Main Data Analysis Libraries](#main-data-analysis-libraries)
+- [Credits](#credits)
+  - [Content](#content)
+  - [Media](#media)
+- [Acknowledgements](#acknowledgements)
+
+---
+
+</details>
+
+<details>
+<summary align="center">How to use this repo (Click to show)</summary>
+
+**Make sure you have:**
+
+- Python installed, this project used V3.12,
+- VS Code latest
+
+**Inside VS Code:**
+
+Open Extensions (Ctrl+Shift+X or ⇧⌘X on macOS)
+Install these extensions if you don't have them:
+
+- Python extension (by Microsoft in the Extensions Marketplace)
+- Jupyter extension (also by Microsoft)
+
+**From the terminal:**
+
+Open the folder in a terminal where you want the project to be saved
+
+#### Run git clone:
+
+```
+git clone https://github.com/petedanielsmith/social-media-effect-on-mental-health.git
+```
+
+#### Navigate in to the new folder:
+
+```
+cd social-media-effect-on-mental-health
+```
+
+#### Setup a virtual enviroment:
+
+Create a virtual enviroment for the project.
+
+Linux / Mac:
+
+```
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+Windows CMD:
+
+```
+python3 -m venv .venv
+.venv\Scripts\activate
+```
+
+Windows PowerShell:
+
+```
+python3 -m venv .venv
+.\.venv\Scripts\Activate.ps1
+```
+
+#### Install the dependancies:
+
+This will install all the dependancies needed for the project in to the virtual enviroment if it is setup, rather than globally
+
+```
+pip install -r requirements.txt
+```
+
+#### Select the Kernel
+
+There is a drop down at the top of the notebooks to select your kernal that will run the Python.
+If you setup a virtual enviroment then make sure you pick the venv one.
+
+---
+
+</details>
+
+<details>
+<summary align="center">Project Structure (Click to show)</summary>
 
 - `.devcontainer` - Folder automatically added by Streamlit Cloud to deploy the dashboard
 - `.github` - Folder containing user story template for the project board
@@ -79,6 +178,11 @@
 
 </details>
 
+<p>
+ <br />
+ <br />
+</p>
+
 ## Dataset Content
 
 The dataset used in this project can be downloaded from [Kaggle: Social Media Mental Health Indicators Dataset](https://www.kaggle.com/datasets/sonalshinde123/social-media-mental-health-indicators-dataset). It captures the relationship between social media usage, screen-time behaviour, and daily lifestyle factors such as sleep duration and interaction quality.
@@ -104,7 +208,11 @@ The dataset used in this project can be downloaded from [Kaggle: Social Media Me
 
 ## Business Requirements
 
-- Describe your business requirements
+Analyse patterns that may influence mental well-being, digital habits, and behavioural trends among social media users.
+
+Use machine learning to create a model that can predict a users mental well-being based on parameters such as age, physical activity, sleep, screen time and time spent on social media.
+
+Create a dashboard allowing users to interrogate the data and enter their own parameters to predict their mental well-being.
 
 ## Hypothesis and how to validate?
 
