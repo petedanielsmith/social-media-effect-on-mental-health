@@ -366,7 +366,66 @@ TODO --------
 
 ## Conclusions
 
-TODO --------
+This project conducted a comprehensive analytical workflow to explore the relationships between social media usage, behavioural factors, and mental health outcomes using a real-world dataset of 5,000 participants. The analysis spanned data cleaning and feature engineering, exploratory data analysis, hypothesis testing, unsupervised learning, and multiple predictive modelling tasks, each contributing a unique perspective on how digital behaviour interacts with mental wellbeing.
+
+Across the nine notebooks:
+
+1.  Data Preparation & Feature Engineering
+
+        The dataset was successfully cleaned and enriched with meaningful features:
+
+        No missing values or duplicates were found, and all original variables were validated for correct data types.
+
+        Additional variables such as age groups, interaction totals, and negative interaction ratios were engineered to support deeper analysis.
+
+        Temporal attributes (e.g., month, day of week) and ordered categorical types were created, enabling more precise visual and statistical analysis.
+
+    GitHub
+
+2.  Exploratory Data Analysis
+
+    Descriptive statistics and distribution plots highlighted several noteworthy patterns:
+
+    Participants spent an average of ~373 minutes per day on screens, with ~175 minutes on social media specifically.
+
+    Sleep hours, physical activity, and engagement quality (positive vs negative interactions) showed variability across demographic groups.
+
+    Preliminary visual comparisons suggested potential relationships between time spent on social platforms and elevated stress, anxiety, or mood levels.
+
+3.  Hypothesis Testing
+
+    Formal statistical tests (e.g., ANOVA, chi-square) confirmed that:
+
+    Several behavioural variables — such as social media time, negative interaction ratio, and physical activity — show statistically significant differences across mental state categories.
+
+    Hypothesis tests supported rejecting null assumptions for key comparisons, suggesting that observed group differences are unlikely due to random variation alone.
+
+4.  Clustering Analysis
+
+    Unsupervised learning uncovered distinct user segments:
+
+    Clusters identified cohorts with similar behavioural profiles (e.g., high screen time & low sleep vs low social media use & higher wellbeing metrics).
+
+    These clusters helped visualise latent patterns not immediately visible from univariate analyses and highlighted groups at potentially higher risk.
+
+5.  Predictive Modelling
+
+    Supervised models were built to estimate key outcomes:
+
+    - Mental State - Usage, interactions, sleep
+      - Models could reasonably distinguish mental state categories, with feature importance highlighting interaction quality and sleep as strong predictors.
+    - Sleep Hours - Screen time, activity, demographics
+      - Predictive performance was moderate, underscoring the multifactorial nature of sleep beyond social media use.
+    - Stress Level - Engagement patterns, physical activity
+      - Stress was predicted with better accuracy than some continuous outcomes, suggesting strong behavioural signals.
+    - Anxiety Level - Social media time & negative interactions
+      - Models identified meaningful associations, though anxiety remains complex and influenced by external factors.
+    - Mood Level - Behaviour, demographics
+      - Prediction accuracy varied, emphasising mood as a nuanced outcome with mixed behavioural signals.
+
+    Across these models, interaction quality (negative vs positive) and behavioural balance (screen time vs sleep/activity) consistently emerged as influential predictors. While predictive performance varied by target, models demonstrated value in estimating mental health indicators from observed behaviour.
+
+Although the dataset is published on Kaggle without any explicit indication that it is synthetic, several analytical patterns observed throughout this project strongly suggest that the data was artificially generated rather than collected from real users. Many variables display unusually clean distributions (e.g. perfectly uniform or symmetric patterns across demographic groups), tightly clustered relationships between behavioural variables, and near-ideal correlations that are rarely found in naturalistic human data. The absence of missing values, outliers, or inconsistent responses, combined with perfectly regular category balances, further contributes to the impression of a synthetically produced dataset. This also lead to the models created having an accuracy score of 1.0 which is almost unheard of in the real world.
 
 ## Deployment
 
