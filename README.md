@@ -323,7 +323,16 @@ These methods provide both descriptive and predictive insights into how behaviou
 
 ## Ethical considerations
 
-TODO --------
+This project deals with sensitive behavioural and mental health-related data. Key ethical considerations include:
+
+- `Data privacy`: All data used are sourced from publicly available datasets and contain no personally identifiable information, however I dropped the user name column as a precaution.
+
+- `Responsible interpretation`: While associations between social media use and mental health are explored, correlation does not imply causation — we avoid claims of direct causal effect unless supported by experimental evidence.
+  PMC
+
+- `Bias awareness`: Demographic and self-reported data may contain bias (e.g., underreporting of symptoms), and analyses take this into account when interpreting results.
+
+- `Mental health sensitivity`: Mental health outcomes can be distressing; visualisations and outputs should be presented with sensitivity, and results should never be used to stigmatise individuals.
 
 ## Dashboard Design
 
