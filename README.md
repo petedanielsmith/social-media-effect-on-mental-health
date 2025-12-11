@@ -36,6 +36,49 @@
     <br/><br/><br/>
 </p>
 
+<details>
+<summary>Project Structure (Click to show)</summary>
+
+- `.devcontainer` - Folder automatically added by Streamlit Cloud to deploy the dashboard
+- `.github` - Folder containing user story template for the project board
+- `charts` - Folder contains any exported chart images from the Jupyter Notebooks
+- `dashboard_app` - root folder of the Streamlit dashnoard app
+  - `utils` - folder that contains my shared utility library Python files
+    - `graph_utils.py` - Various functions to generate custom charts
+  - `model_utils.py`- Funcitons for loading cached models
+  - `persona_utils.py` - Functions for loading the cluster data and cleaning it to apply to filter values
+  - `ui_components.py` - Single function for a section header that displays a title, number in a circle and horizontal line
+  - `main.py` - Main entry point with routing info for the streamlit multi page app
+  - `introduction.py` - Introduction page of the dashboard
+  - `data_visualisation.py' - Visualisation page for the dashboard
+  - `hypothesis_statistical_testing.py` - Hypothesis testing page for the dashboard
+  - `clusters.py` - Clutering page for the dashboard
+  - `model_overview.py` - Model overview page for the dashboard
+  - `model_predictions.py` - Model prediction page for the dashboard
+- `data` - Folder to contain the data files
+  - `cluster_profiles.parquet` - Exported mean centroid data for each of the clusters
+  - `mental_health_social_media_dataset_cleaned.parquet` - Cleaned data file in parquet format to persist data types
+  - `mental_health_social_media_dataset_raw.csv` - Original raw dataset downloaded from Kaggle
+- `images` - Folder containing any static images used in the readme or dashboard app
+- `jupyter_notebooks` - Folder to store the notebooks
+  - `01_dataload_clean_and_look_at_distributions.ipynb` - Initial cleaning the data and look at distributions notebook
+  - `02_eda_exploratory_data_analysis.ipynb` - Notebook to interogate the data and do the EDA
+  - `03_hypothesis_and_statistical_testing.ipynb` - Notebook to carry out the statistical tests
+  - `04_clustering.ipynb` - Notebook to do the k-means clustering
+  - `05_predicting_mental_state.ipynb` - Notebook to create a model to predict mental state via random forest
+  - `06_predicting_sleep.ipynb` - Notebook to create a model to predict sleep hours by linear regression
+  - `07_predicting_stress_level.ipynb` - Notebook to create a model to predict stress level by linear regression
+  - `08_predicting_anxiety_level.ipynb` - Notebook to create a model to predict anxiety level by linear regression
+  - `09_predicting_mood_level.ipynb` - Notebook to create a model to predict mood level
+- `models` - Folder to hold the saved ML models in pkl format
+- `.gitignore` - List of everything to not include in the git reposiroty
+- `README.md` - This readme file
+- `requirements.txt` - List of Python libraries and their versions required to use this project
+
+---
+
+</details>
+
 ## Dataset Content
 
 The dataset used in this project can be downloaded from [Kaggle: Social Media Mental Health Indicators Dataset](https://www.kaggle.com/datasets/sonalshinde123/social-media-mental-health-indicators-dataset). It captures the relationship between social media usage, screen-time behaviour, and daily lifestyle factors such as sleep duration and interaction quality.
