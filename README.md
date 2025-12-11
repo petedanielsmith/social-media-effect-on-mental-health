@@ -39,6 +39,10 @@
 <details>
 <summary align="center">Table of contents (Click to show)</summary>
 
+<p>
+  <br/>
+</p>
+
 - [Dataset Content](#dataset-content)
 - [Business Requirements](#business-requirements)
 - [Hypothesis and how to validate](#hypothesis-and-how-to-validate)
@@ -63,6 +67,10 @@
 
 <details>
 <summary align="center">How to use this repo (Click to show)</summary>
+
+<p>
+  <br/>
+</p>
 
 **Make sure you have:**
 
@@ -137,6 +145,12 @@ If you setup a virtual enviroment then make sure you pick the venv one.
 
 <details>
 <summary align="center">Project Structure (Click to show)</summary>
+
+<p>
+  <br/>
+</p>
+
+Project Folders/Files:
 
 - `.devcontainer` - Folder automatically added by Streamlit Cloud to deploy the dashboard
 - `.github` - Folder containing user story template for the project board
@@ -260,6 +274,8 @@ Create a dashboard allowing users to interrogate the data and enter their own pa
   - H₁ : Linear correlation exists
   - Method : Pearson & Spearman correlation
 
+Link to the [hypothesis and statistical testing notebook](./jupyter_notebooks/03_hypothesis_and_statistical_testing.ipynb)
+
 ## Project Plan
 
 The prjoject follows the following steps:
@@ -277,26 +293,19 @@ The prjoject follows the following steps:
 
 ## The rationale to map the business requirements to the Data Visualisations
 
-- List your business requirements and a rationale to map them to the Data Visualisations
+TODO --------
 
 ## Analysis techniques used
 
-- List the data analysis methods used and explain limitations or alternative approaches.
-- How did you structure the data analysis techniques. Justify your response.
-- Did the data limit you, and did you use an alternative approach to meet these challenges?
-- How did you use generative AI tools to help with ideation, design thinking and code optimisation?
+TODO --------
 
 ## Ethical considerations
 
-- Were there any data privacy, bias or fairness issues with the data?
-- How did you overcome any legal or societal issues?
+TODO --------
 
 ## Dashboard Design
 
-- List all dashboard pages and their content, either blocks of information or widgets, like buttons, checkboxes, images, or any other item that your dashboard library supports.
-- Later, during the project development, you may revisit your dashboard plan to update a given feature (for example, at the beginning of the project you were confident you would use a given plot to display an insight but subsequently you used another plot type).
-- How were data insights communicated to technical and non-technical audiences?
-- Explain how the dashboard was designed to communicate complex data insights to different audiences.
+TODO --------
 
 ## Unfixed Bugs
 
@@ -310,10 +319,11 @@ When I added the clustering notebook, I one hot encoded the categories and then 
 
 ## Development Roadmap
 
-- What challenges did you face, and what strategies were used to overcome these challenges?
-- What new skills or tools do you plan to learn next based on your project experience?
+TODO --------
 
 ## Conclusions
+
+TODO --------
 
 ## Deployment
 
@@ -369,4 +379,4 @@ The libraries used for data analysis were:
 
 ## Acknowledgements (optional)
 
-- Thank the people who provided support through this project.
+TODO --------
