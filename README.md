@@ -65,6 +65,14 @@ The dataset used in this project can be downloaded from [Kaggle: Social Media Me
 
 ## Hypothesis and how to validate?
 
+- Statistical test methods used:
+
+  - **ANOVA (Analysis of Variance)** - Used when comparing the mean value of a numerical variable across multiple groups
+  - **Chi-Square Test of Independence** - Used for relationships between two categorical variables
+  - **Correlation Analysis (Pearson & Spearman)** - Used when assessing how two numerical variables move together
+    - `Pearson` - linear correlation
+    - `Spearman` - monotonic (rank-based) correlation
+
 - Sleep vs Age Group
 
   - H₀ : Mean sleep hours are equal across age groups
@@ -100,13 +108,6 @@ The dataset used in this project can be downloaded from [Kaggle: Social Media Me
   - H₀ : No linear correlation
   - H₁ : Linear correlation exists
   - Method : Pearson & Spearman correlation
-
-- Statistical test methods used:
-  - **ANOVA (Analysis of Variance)** - Used when comparing the mean value of a numerical variable across multiple groups
-  - **Chi-Square Test of Independence** - Used for relationships between two categorical variables
-  - **Correlation Analysis (Pearson & Spearman)** - Used when assessing how two numerical variables move together
-    - `Pearson` - linear correlation
-    - `Spearman` - monotonic (rank-based) correlation
 
 ## Project Plan
 
