@@ -185,12 +185,9 @@ The libraries used for data analysis were:
 
 ## Credits
 
-- In this section, you need to reference where you got your content, media and extra help from. It is common practice to use code from other repositories and tutorials, however, it is important to be very specific about these sources to avoid plagiarism.
-- You can break the credits section up into Content and Media, depending on what you have included in your project.
-
 ### Content
 
-- [Code institute](https://codeinstitute.net/) - The intial project structure.
+- [Code institute](https://codeinstitute.net/) - The intial project structure and the LMS (Learning Managment System) from the course.
 - [Kaggle](https://www.kaggle.com/) - Providing the data set used.
 - [ChatGPT](https://chatgpt.com/) - Used to invent the user personas from my centroid means, rewriting contnent sections in notebooks and dashboard, bouncing ideas off and refactoring some code.
 - [Github Copiolot](https://github.com/features/copilot) - Adding function docstrings and commenting code and speeding up repetative tasks.
