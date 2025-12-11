@@ -162,7 +162,7 @@ The prjoject follows the following steps:
 
 ## Deployment
 
-Todo
+The dashboard app is deployed on [Streamlit Community Cloud](https://streamlit.io/cloud) and can be accessed by visiting this URL in a web browser:
 
 [https://social-media-effect-on-mental-health.streamlit.app/](https://social-media-effect-on-mental-health.streamlit.app/)
 
