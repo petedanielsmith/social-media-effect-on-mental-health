@@ -65,7 +65,48 @@ The dataset used in this project can be downloaded from [Kaggle: Social Media Me
 
 ## Hypothesis and how to validate?
 
-- List here your project hypothesis(es) and how you envision validating it (them)
+- Sleep vs Age Group
+
+  - H₀ : Mean sleep hours are equal across age groups
+  - H₁ : At least one group differs
+  - Method : A one-way ANOVA test
+
+- Stress vs Platform
+
+  - H₀ : Mean stress is equal across platforms
+  - H₁ : At least one platform differs
+  - Method : A one-way ANOVA test
+
+- Platform vs Mental State
+
+  - H₀ : No association between platform and mental state
+  - H₁ : They are associated
+  - Method : Chi-Square test
+
+- Sleep vs Mental State
+
+  - H₀ : Sleep is equal across mental states
+  - H₁ : At least one mental_state differs
+  - Method : A one-way ANOVA test
+
+- Screen Time vs Stress
+
+  - H₀ : No linear correlation
+  - H₁ : Linear correlation exists
+  - Method : Pearson & Spearman correlation
+
+- Negative Interaction Ratio vs Stress
+
+  - H₀ : No linear correlation
+  - H₁ : Linear correlation exists
+  - Method : Pearson & Spearman correlation
+
+- Statistical test methods used:
+  - **ANOVA (Analysis of Variance)** - Used when comparing the mean value of a numerical variable across multiple groups
+  - **Chi-Square Test of Independence** - Used for relationships between two categorical variables
+  - **Correlation Analysis (Pearson & Spearman)** - Used when assessing how two numerical variables move together
+    - `Pearson` - linear correlation
+    - `Spearman` - monotonic (rank-based) correlation
 
 ## Project Plan
 
