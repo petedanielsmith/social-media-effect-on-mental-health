@@ -300,9 +300,13 @@ The prjoject follows the following steps:
 
 ## Unfixed Bugs
 
-- Please mention unfixed bugs and why they were not fixed. This section should include shortcomings of the frameworks or technologies used. Although time can be a significant variable to consider, paucity of time and difficulty understanding implementation are not valid reasons to leave bugs unfixed.
-- Did you recognise gaps in your knowledge, and how did you address them?
-- If applicable, include evidence of feedback received (from peers or instructors) and how it improved your approach or understanding.
+**Dashboard data table:**
+
+On the visualisation page in the dashboard I am using the dataframe UI component to display the raw data. I have added page size, pagination buttons and column sort controls. All this works fine but the Streamlit dataframe control allows you to click on the column headers to sort the data in view. There is no way of turning that off for the control. It can be confuing to users as they only sort the current page in view. I tried swapping it to the streamlit table component but the styling was a mess. It really needs a custom HTML component making to render the table out in a styled custom table with no interative features but I ran out of time.
+
+**Clutering:**
+
+When I added the clustering notebook, I one hot encoded the categories and then used the simple scalar on all the columns, so the new encoded category columumns were scaled too. I noticed at the time with the intention of going back and fixing it and addressed this on the ML pipelines, however I then decided to use the cluster persona centroid means as test data on the ML model notebooks so the amount of work to go back and address and redo the cluster grew and I ran out of time.
 
 ## Development Roadmap
 
