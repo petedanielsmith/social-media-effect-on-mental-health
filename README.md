@@ -303,7 +303,7 @@ The visualisations in this project are designed to support the business requirem
 
 4. Predictive model evaluation charts (e.g., residual curves, feature importance) demonstrate how well machine learning models can forecast mental wellbeing based on available predictors.
 
-These visualisations are specifically mapped to the business goals: (1) detect behavioural trends affecting mental state, and (2) provide interpretable insights for non-technical stakeholders to explore predictive relationships interactively.
+These visualisations are specifically mapped to the business goals: 1, detect behavioural trends affecting mental state, and 2, provide interpretable insights for non-technical stakeholders to explore predictive relationships interactively.
 
 ## Analysis techniques used
 
@@ -372,15 +372,13 @@ Across the nine notebooks:
 
 1.  Data Preparation & Feature Engineering
 
-        The dataset was successfully cleaned and enriched with meaningful features:
+    The dataset was successfully cleaned and enriched with meaningful features:
 
-        No missing values or duplicates were found, and all original variables were validated for correct data types.
+    No missing values or duplicates were found, and all original variables were validated for correct data types.
 
-        Additional variables such as age groups, interaction totals, and negative interaction ratios were engineered to support deeper analysis.
+    Additional variables such as age groups, interaction totals, and negative interaction ratios were engineered to support deeper analysis.
 
-        Temporal attributes (e.g., month, day of week) and ordered categorical types were created, enabling more precise visual and statistical analysis.
-
-    GitHub
+    Temporal attributes (e.g., month, day of week) and ordered categorical types were created, enabling more precise visual and statistical analysis.
 
 2.  Exploratory Data Analysis
 
