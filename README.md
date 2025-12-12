@@ -341,17 +341,19 @@ This project deals with sensitive behavioural and mental health-related data. Ke
 
 The dashboard is built with Streamlit and provides an interactive interface for exploring the data and models:
 
-- `Introduction Page`: High-level overview of the dataset and project goals.
+![Dashboard deign pages](./images/dashboard_design_pages.png)
 
-- `Data Visualisation`: Users can explore distributions and relationships between variables and mental health outcomes. The aim is to allow users, with no coding experince, to be able to create the graphs they require and configure them as needed. Options to both filter the data, and add statistical information to charts (such as adding mean, median, quartiles and standard deviation lines) are within the uers control.
+1. `Introduction Page`: High-level overview of the dataset and project goals.
 
-- `Statistical Testing`: Sections where hypothesis tests results are displayed with context and interpretation.
+2. `Data Visualisation`: Users can explore distributions and relationships between variables and mental health outcomes. The aim is to allow users, with no coding experince, to be able to create the graphs they require and configure them as needed. Options to both filter the data, and add statistical information to charts (such as adding mean, median, quartiles and standard deviation lines) are within the uers control.
 
-- `Clustering Explorer`: Visualise user clusters, understand profile characteristics and explain the methods used to create the clusters.
+3. `Statistical Testing`: Sections where hypothesis tests results are displayed with context and interpretation.
 
-- `Models overview`: Sections to explain the different models created to be used for predictions.
+4. `Clustering Explorer`: Visualise user clusters, understand profile characteristics and explain the methods used to create the clusters.
 
-- `Prediction Tools`: Enter custom inputs to see predictions of mental health metrics such as stress or mood.
+5. `Models overview`: Sections to explain the different models created to be used for predictions.
+
+6. `Prediction Tools`: Enter custom inputs to see predictions of mental health metrics such as stress or mood.
 
 The design focuses on clarity, interactive filtering, and enabling the user to do their own storytelling from raw data to analytical insights. Consistent colours for the charts, and designs are also used throughout.
 
