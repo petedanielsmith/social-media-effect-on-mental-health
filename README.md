@@ -223,7 +223,7 @@ The dataset used in this project can be downloaded from [Kaggle: Social Media Me
 
 Analyse patterns that may influence mental well-being, digital habits, and behavioural trends among social media users.
 
-Use machine learning to create a model that can predict a users mental well-being based on parameters such as age, physical activity, sleep, screen time and time spent on social media.
+Use machine learning to create a model that can predict a user's mental well-being based on parameters such as age, physical activity, sleep, screen time and time spent on social media.
 
 Create a dashboard allowing users to interrogate the data and enter their own parameters to predict their mental well-being.
 
@@ -299,22 +299,22 @@ Specifically:
 1. Distribution plots show how variables such as screen time and social media usage vary across different mental health states, helping to identify high-impact behavioural patterns.
    ![violin plot of category distributions](./charts/violin_plots_looking_for_trends.png)
 
-2. Correlation heatmaps and scatterplots reveal potential associations between lifestyle factors (e.g., sleep, physical activity) and mental wellbeing, fulfilling the requirement to detect meaningful influences on mental health outcomes.
+2. Correlation heatmaps and scatterplots reveal potential associations between lifestyle factors (e.g. sleep, physical activity) and mental wellbeing, fulfilling the requirement to detect meaningful influences on mental health outcomes.
    ![Correlation matrix](./charts/correlation_matrix_heatmap.png)
 
 3. Cluster plots group users with similar profiles to uncover common behavioural clusters, aiding insight for targeted intervention strategies. Silhouette to look identify the k value to use for clustering.
    ![Cluster PCA scatter chart](./charts/pca_plots_different_clusters.png)
    ![Silhouette chart](./charts/silhouette_plots.png)
 
-4. Predictive model evaluation charts (e.g., confusion matrix, feature importance, residual distribution and actual vs predicted scatter plots) demonstrate how well machine learning models can forecast mental wellbeing based on available predictors.
+4. Predictive model evaluation charts (e.g. confusion matrix, feature importance, residual distribution and actual vs predicted scatter plots) demonstrate how well machine learning models can forecast mental wellbeing based on available predictors.
    ![Confusion matrix](./charts/predicting_mental_state_random_forest_confusion_matrix.png)
    ![Feature importance](./charts/predicting_mental_state_random_forest_feature_importances.png)
    ![Linear regression residuals chart](./charts/predicting_sleep_linear_regression_residuals.png)
 
 These visualisations are specifically mapped to the business goals:
 
-1. Detect behavioural trends affecting mental state,
-2. Provide interpretable insights for non-technical stakeholders to explore predictive relationships interactively.
+1. Detect behavioural trends affecting mental state
+2. Provide interpretable insights for non-technical stakeholders to explore predictive relationships interactively
 
 ## Analysis techniques used
 
@@ -336,7 +336,7 @@ These methods provide both descriptive and predictive insights into how behaviou
 
 This project deals with sensitive behavioural and mental health-related data. Key ethical considerations include:
 
-- `Data privacy`: All data used are sourced from publicly available datasets and contain no personally identifiable information, however I dropped the individuals name column as a precaution.
+- `Data privacy`: All data used are sourced from publicly available datasets and contain no personally identifiable information, however I dropped the individuals' name column as a precaution.
 
 - `Responsible interpretation`: While associations between social media use and mental health are explored, correlation does not imply causation. I avoid claims of direct causal effect unless supported by experimental evidence.
 
@@ -352,7 +352,7 @@ The dashboard is built with Streamlit and provides an interactive interface for 
 
 1. `Introduction Page`: High-level overview of the dataset and project goals.
 
-2. `Data Visualisation`: Users can explore distributions and relationships between variables and mental health outcomes. The aim is to allow users, with no coding experince, to be able to create the graphs they require and configure them as needed. Options to both filter the data, and add statistical information to charts (such as adding mean, median, quartiles and standard deviation lines) are within the uers control.
+2. `Data Visualisation`: Users can explore distributions and relationships between variables and mental health outcomes. The aim is to allow users, with no coding experince, to be able to create the graphs they require and configure them as needed. Options to both filter the data and add statistical information to charts (such as adding mean, median, quartiles and standard deviation lines) are within the uers control.
 
 3. `Statistical Testing`: Sections where hypothesis tests results are displayed with context and interpretation.
 
@@ -362,13 +362,13 @@ The dashboard is built with Streamlit and provides an interactive interface for 
 
 6. `Prediction Tools`: Enter custom inputs to see predictions of mental health metrics such as stress or mood.
 
-The design focuses on clarity, interactive filtering, and enabling the user to do their own storytelling from raw data to analytical insights. Consistent colours for the charts, and designs are also used throughout.
+The design focuses on clarity, interactive filtering, and enabling the user to do their own storytelling from raw data to analytical insights. Consistent colours for the charts and designs are also used throughout.
 
 ## Unfixed Bugs
 
 **Dashboard data table:**
 
-On the visualisation page in the dashboard I am using the dataframe UI component to display the raw data. I have added page size, pagination buttons and column sort controls. All this works fine but the Streamlit dataframe control allows you to click on the column headers to sort the data in view. There is no way of turning that off for the control. It can be confuing to users as they only sort the current page in view. I tried swapping it to the streamlit table component but the styling was a mess. It really needs a custom HTML component making to render the table out in a styled custom table with no interative features but I ran out of time.
+On the visualisation page in the dashboard I am using the dataframe UI component to display the raw data. I have added page size, pagination buttons and column sort controls. All this works fine but the Streamlit dataframe control allows you to click on the column headers to sort the data in view. There is no way of turning that off for the control. It can be confuing to users as they only sort the current page in view. I tried swapping it to the Streamlit table component but the styling was a mess. It really needs a custom HTML component making to render the table out in a styled custom table with no interative features but I ran out of time.
 
 **Clustering:**
 
@@ -378,15 +378,15 @@ When I added the clustering notebook, I one hot encoded the categories and then 
 
 Challenges faced:
 
-- Having a separate notebooks for all the sections meant that saving to a CSV file would require reassigning the data types and catagorical columns each time they are imorted so I saved to parquet files instead to persist this meta data.
-- On the distributions tab of the visualise page in the dashnoard, my intial implementation was rendering the interqurtile range lines outside of the chart bounds and sometimes overlapped the labels. I asked chartGPT to refactor my function and it suggested using a helper function that repositioned the labels.
+- Having a separate notebook for all the sections meant that saving to a CSV file would require reassigning the data types and catagorical columns each time they are imorted so I saved to parquet files instead to persist this metadata.
+- On the distributions tab of the visualise page in the dashboard, my intial implementation was rendering the interqurtile range lines outside of the chart bounds and sometimes overlapped the labels. I asked chartGPT to refactor my function and it suggested using a helper function that repositioned the labels.
 - On the personas page in the dashboard, uing the built in column functionality in Streamlit, the cards didn't stack in a neat grid as there is no option to use grid or flexbox. I overcame this by adding custom HTML/CSS in to the card to kee a consistant height. I had to change the design slighly and not include the strapline field that I initially intended to add, in order to keep the UI neat and tidy.
-- The data in general. It was very linear. eg. things like gender were evenly distributed and I couln't see any variation in time series data etc. This made it difficult to use and model accuarcy came back at 100% which didn't give me much to talk about or be able to tune parameters and investigate different model performances etc.
+- The data in general. It was very linear. e.g. things like gender were evenly distributed and I couldn't see any variation in time series data etc. This made it difficult to use and model accuarcy came back at 100% which didn't give me much to talk about or be able to tune parameters and investigate different model performances, etc.
 
 Next steps:
 
 - Create an extra prediction model that takes in parameters such as sleep, age, platform, screen time and social media time, and outputs multiple values for mood/stress/anixety levels and mental state as a single prediction.
-- Change the single charts in the dashboard, that don't rely on mult-figure layouts, to use Plotly instead of Seaborn/Matplotlib, to allow interactive features such as tooltips etc.
+- Change the single charts in the dashboard, that don't rely on multi-figure layouts, to use Plotly instead of Seaborn/Matplotlib, to allow interactive features such as tooltips, etc.
 
 ## Conclusions
 
@@ -480,7 +480,7 @@ The libraries used for data analysis were:
 - [Kaggle](https://www.kaggle.com/) - Providing the data set used.
 - [ChatGPT](https://chatgpt.com/) - Used to invent the user personas from my centroid means, rewriting content sections in notebooks, readme and dashboard, bouncing ideas off and refactoring some code.
 - [Github Copiolot](https://github.com/features/copilot) - Adding function docstrings and commenting code and speeding up repetative tasks.
-- [Streamlit API Documentation](https://docs.streamlit.io/develop/api-reference) - One of the best, easy to use, product API documentation I have used.
+- [Streamlit API Documentation](https://docs.streamlit.io/develop/api-reference) - One of the best, easy-to-use product API documentation I have used.
 - [SimpleSteps.guide](https://simplesteps.guide/guides/technology/machine-learning-ai) - My notes I recorded from the Code Institute course.
 
 ### Media
