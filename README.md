@@ -59,7 +59,6 @@
 - [Credits](#credits)
   - [Content](#content)
   - [Media](#media)
-- [Acknowledgements](#acknowledgements)
 
 ---
 
@@ -344,11 +343,13 @@ The dashboard is built with Streamlit and provides an interactive interface for 
 
 - `Introduction Page`: High-level overview of the dataset and project goals.
 
-- `Data Visualisation`: Users can explore distributions and relationships between variables and mental health outcomes. The aim is to allow users, with no coding experince, to be able to create the graphs they require and configure them as needed. Options to both filter the data, and add statistical information to charts (such as adding mean, median, quartiles and standard deviation lines to charts) are within the uers control.
+- `Data Visualisation`: Users can explore distributions and relationships between variables and mental health outcomes. The aim is to allow users, with no coding experince, to be able to create the graphs they require and configure them as needed. Options to both filter the data, and add statistical information to charts (such as adding mean, median, quartiles and standard deviation lines) are within the uers control.
 
 - `Statistical Testing`: Sections where hypothesis tests results are displayed with context and interpretation.
 
 - `Clustering Explorer`: Visualise user clusters, understand profile characteristics and explain the methods used to create the clusters.
+
+- `Models overview`: Sections to explain the different models created to be used for predictions.
 
 - `Prediction Tools`: Enter custom inputs to see predictions of mental health metrics such as stress or mood.
 
@@ -360,13 +361,23 @@ The design focuses on clarity, interactive filtering, and enabling the user to d
 
 On the visualisation page in the dashboard I am using the dataframe UI component to display the raw data. I have added page size, pagination buttons and column sort controls. All this works fine but the Streamlit dataframe control allows you to click on the column headers to sort the data in view. There is no way of turning that off for the control. It can be confuing to users as they only sort the current page in view. I tried swapping it to the streamlit table component but the styling was a mess. It really needs a custom HTML component making to render the table out in a styled custom table with no interative features but I ran out of time.
 
-**Clutering:**
+**Clustering:**
 
 When I added the clustering notebook, I one hot encoded the categories and then used the simple scalar on all the columns, so the new encoded category columumns were scaled too. I noticed at the time with the intention of going back and fixing it and addressed this on the ML pipelines, however I then decided to use the cluster persona centroid means as test data on the ML model notebooks so the amount of work to go back and address and redo the cluster grew and I ran out of time.
 
 ## Development Roadmap
 
-TODO --------
+Challenges faced:
+
+- Having a separate notebooks for all the sections meant that saving to a CSV file would require reassigning the data types and catagorical columns each time they are imorted so I saved to parquet files instead to persist this meta data.
+- On the distributions tab of the visualise page in the dashnoard, my intial implementation was rendering the interqurtile range lines outside of the chart bounds and sometimes overlapped the labels. I asked chartGPT to refactor my function and it suggested using a helper function that repositioned the labels.
+- On the personas page in the dashboard, uing the built in column functionality in Streamlit, the cards didn't stack in a neat grid as there is no option to use grid or flexbox. I overcame this by adding custom HTML/CSS in to the card to kee a consistant height. I had to change the design slighly and not include the strapline field that I initially intended to add, in order to keep the UI neat and tidy.
+- The data in general. It was very linear. eg. things like gender were evenly distributed and I couln't see any variation in time series data etc. This made it difficult to use and model accuarcy came back at 100% which didn't give me much to talk about or be able to tune parameters and investigate different model performances etc.
+
+Next steps:
+
+- Create an extra prediction model that takes in parameters such as sleep, age, platform, screen time and social media time, and outputs multiple values for mood/stress/anixety levels and mental state as a single prediction.
+- Change the single charts in the dashboard, that don't rely on mult-figure layouts, to use Plotly instead of Seaborn/Matplotlib, to allow interactive features such as tooltips etc.
 
 ## Conclusions
 
@@ -458,7 +469,7 @@ The libraries used for data analysis were:
 
 - [Code institute](https://codeinstitute.net/) - The intial project structure and the LMS (Learning Managment System) from the course.
 - [Kaggle](https://www.kaggle.com/) - Providing the data set used.
-- [ChatGPT](https://chatgpt.com/) - Used to invent the user personas from my centroid means, rewriting contnent sections in notebooks and dashboard, bouncing ideas off and refactoring some code.
+- [ChatGPT](https://chatgpt.com/) - Used to invent the user personas from my centroid means, rewriting content sections in notebooks, readme and dashboard, bouncing ideas off and refactoring some code.
 - [Github Copiolot](https://github.com/features/copilot) - Adding function docstrings and commenting code and speeding up repetative tasks.
 - [Streamlit API Documentation](https://docs.streamlit.io/develop/api-reference) - One of the best, easy to use, product API documentation I have used.
 - [SimpleSteps.guide](https://simplesteps.guide/guides/technology/machine-learning-ai) - My notes I recorded from the Code Institute course.
@@ -480,7 +491,3 @@ The libraries used for data analysis were:
 - [Streamlit](https://docs.streamlit.io/) - Steamlit logo image.
 - [Feature-engine](https://feature-engine.trainindata.com/en/latest/) - Feature-engine logo image.
 - [Imbalanced-learn](https://imbalanced-learn.org/stable/) - Imbalanced-learn logo image.
-
-## Acknowledgements (optional)
-
-TODO --------
