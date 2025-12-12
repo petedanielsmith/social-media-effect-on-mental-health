@@ -297,12 +297,19 @@ The visualisations in this project are designed to support the business requirem
 Specifically:
 
 1. Distribution plots show how variables such as screen time and social media usage vary across different mental health states, helping to identify high-impact behavioural patterns.
+   ![violin plot of category distributions](./charts/violin_plots_looking_for_trends.png)
 
 2. Correlation heatmaps and scatterplots reveal potential associations between lifestyle factors (e.g., sleep, physical activity) and mental wellbeing, fulfilling the requirement to detect meaningful influences on mental health outcomes.
+   ![Correlation matrix](./charts/correlation_matrix_heatmap.png)
 
-3. Cluster plots group users with similar profiles to uncover common behavioural clusters, aiding insight for targeted intervention strategies.
+3. Cluster plots group users with similar profiles to uncover common behavioural clusters, aiding insight for targeted intervention strategies. Silhouette to look identify the k value to use for clustering.
+   ![Cluster PCA scatter chart](./charts/pca_plots_different_clusters.png)
+   ![Silhouette chart](./charts/silhouette_plots.png)
 
 4. Predictive model evaluation charts (e.g., confusion matrix, feature importance, residual distribution and actual vs predicted scatter plots) demonstrate how well machine learning models can forecast mental wellbeing based on available predictors.
+   ![Confusion matrix](./charts/predicting_mental_state_random_forest_confusion_matrix.png)
+   ![Feature importance](./charts/predicting_mental_state_random_forest_feature_importances.png)
+   ![Linear regression residuals chart](./charts/predicting_sleep_linear_regression_residuals.png)
 
 These visualisations are specifically mapped to the business goals:
 
