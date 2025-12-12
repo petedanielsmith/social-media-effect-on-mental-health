@@ -293,7 +293,9 @@ The prjoject follows the following steps:
 
 ## The rationale to map the business requirements to the Data Visualisations
 
-The visualisations in this project are designed to support the business requirements by highlighting trends and relationships that contribute to understanding mental health outcomes in relation to social media behaviour. Specifically:
+The visualisations in this project are designed to support the business requirements by highlighting trends and relationships that contribute to understanding mental health outcomes in relation to social media behaviour.
+
+Specifically:
 
 1. Distribution plots show how variables such as screen time and social media usage vary across different mental health states, helping to identify high-impact behavioural patterns.
 
@@ -301,23 +303,26 @@ The visualisations in this project are designed to support the business requirem
 
 3. Cluster plots group users with similar profiles to uncover common behavioural clusters, aiding insight for targeted intervention strategies.
 
-4. Predictive model evaluation charts (e.g., residual curves, feature importance) demonstrate how well machine learning models can forecast mental wellbeing based on available predictors.
+4. Predictive model evaluation charts (e.g., confusion matrix, feature importance, residual distribution and actual vs predicted scatter plots) demonstrate how well machine learning models can forecast mental wellbeing based on available predictors.
 
-These visualisations are specifically mapped to the business goals: 1, detect behavioural trends affecting mental state, and 2, provide interpretable insights for non-technical stakeholders to explore predictive relationships interactively.
+These visualisations are specifically mapped to the business goals:
+
+1. Detect behavioural trends affecting mental state,
+2. Provide interpretable insights for non-technical stakeholders to explore predictive relationships interactively.
 
 ## Analysis techniques used
 
 The following techniques and statistical methods were used throughout the project:
 
-- Exploratory Data Analysis (EDA): Summary statistics, distribution and boxplots to understand variable behaviour and detect outliers or patterns.
+- Exploratory Data Analysis (EDA): Summary statistics, distribution, frequency, violin and boxplots to understand variable behaviour and detect outliers or patterns.
 
-- Statistical testing: One-way ANOVA and chi-square tests were used to test hypotheses about differences between groups (e.g., mental state by platform) and associations between categorical variables.
+- Statistical testing: One-way ANOVA and chi-square tests were used to test hypotheses about differences between groups (e.g. mental state by platform) and associations between categorical variables.
 
 - Correlation analysis: Pearson and Spearman correlations to quantify linear and rank-based relationships between numeric features.
 
 - Unsupervised learning (Clustering): K-Means clustering to discover latent groups of users with similar attribute profiles.
 
-- Supervised learning (Prediction): Models such as Random Forest and Linear Regression to predict mental health outcomes (e.g., stress, mood) using behavioural and demographic features.
+- Supervised learning (Prediction): Models such as Random Forest and Linear Regression to predict mental health outcomes (e.g. stress, mood) using behavioural and demographic features.
 
 These methods provide both descriptive and predictive insights into how behavioural variables relate to mental health outcomes.
 
@@ -325,14 +330,13 @@ These methods provide both descriptive and predictive insights into how behaviou
 
 This project deals with sensitive behavioural and mental health-related data. Key ethical considerations include:
 
-- `Data privacy`: All data used are sourced from publicly available datasets and contain no personally identifiable information, however I dropped the user name column as a precaution.
+- `Data privacy`: All data used are sourced from publicly available datasets and contain no personally identifiable information, however I dropped the individuals name column as a precaution.
 
-- `Responsible interpretation`: While associations between social media use and mental health are explored, correlation does not imply causation — we avoid claims of direct causal effect unless supported by experimental evidence.
-  PMC
+- `Responsible interpretation`: While associations between social media use and mental health are explored, correlation does not imply causation. I avoid claims of direct causal effect unless supported by experimental evidence.
 
-- `Bias awareness`: Demographic and self-reported data may contain bias (e.g., underreporting of symptoms), and analyses take this into account when interpreting results.
+- `Bias awareness`: Demographic and self-reported data, such as stress/anxiety/mood levels, may contain bias (e.g. underreporting of symptoms), and analyses take this into account when interpreting results.
 
-- `Mental health sensitivity`: Mental health outcomes can be distressing; visualisations and outputs should be presented with sensitivity, and results should never be used to stigmatise individuals.
+- `Mental health sensitivity`: Mental health outcomes can be distressing. Visualisations and outputs should be presented with sensitivity, and results should never be used to stigmatise individuals.
 
 ## Dashboard Design
 
@@ -340,15 +344,15 @@ The dashboard is built with Streamlit and provides an interactive interface for 
 
 - `Introduction Page`: High-level overview of the dataset and project goals.
 
-- `Data Visualisation`: Users can explore distributions and relationships between variables and mental health outcomes. The aim is on allowing users with no coding experince to be able to create the graphs they require and configure them as needed.
+- `Data Visualisation`: Users can explore distributions and relationships between variables and mental health outcomes. The aim is to allow users, with no coding experince, to be able to create the graphs they require and configure them as needed. Options to both filter the data, and add statistical information to charts (such as adding mean, median, quartiles and standard deviation lines to charts) are within the uers control.
 
 - `Statistical Testing`: Sections where hypothesis tests results are displayed with context and interpretation.
 
-- `Clustering Explorer`: Visualise user clusters and understand profile characteristics.
+- `Clustering Explorer`: Visualise user clusters, understand profile characteristics and explain the methods used to create the clusters.
 
 - `Prediction Tools`: Enter custom inputs to see predictions of mental health metrics such as stress or mood.
 
-The design focuses on clarity, interactive filtering, and storytelling to guide users from raw data to analytical insights. Consistent colours for the charts, and designs are also used throughout.
+The design focuses on clarity, interactive filtering, and enabling the user to do their own storytelling from raw data to analytical insights. Consistent colours for the charts, and designs are also used throughout.
 
 ## Unfixed Bugs
 
@@ -392,9 +396,9 @@ Across the nine notebooks:
 
 3.  Hypothesis Testing
 
-    Formal statistical tests (e.g., ANOVA, chi-square) confirmed that:
+    Formal statistical tests (e.g. ANOVA, chi-square) confirmed that:
 
-    Several behavioural variables — such as social media time, negative interaction ratio, and physical activity — show statistically significant differences across mental state categories.
+    Several behavioural variables, such as social media time, negative interaction ratio, and physical activity, show statistically significant differences across mental state categories.
 
     Hypothesis tests supported rejecting null assumptions for key comparisons, suggesting that observed group differences are unlikely due to random variation alone.
 
@@ -402,7 +406,7 @@ Across the nine notebooks:
 
     Unsupervised learning uncovered distinct user segments:
 
-    Clusters identified cohorts with similar behavioural profiles (e.g., high screen time & low sleep vs low social media use & higher wellbeing metrics).
+    Clusters identified cohorts with similar behavioural profiles (e.g. high screen time & low sleep vs low social media use & higher wellbeing metrics).
 
     These clusters helped visualise latent patterns not immediately visible from univariate analyses and highlighted groups at potentially higher risk.
 
